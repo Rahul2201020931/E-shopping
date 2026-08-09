@@ -110,7 +110,7 @@ export const Navbar = () => {
           />
 
           {/* Cart Quantity */}
-          <p className="absolute right-[-5px] bottom-[-5px] w-4 h-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">
+          <p className="absolute right -[-5px] bottom -[-5px] w-4 h-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">
             0
           </p>
 
