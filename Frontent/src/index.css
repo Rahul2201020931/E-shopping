@@ -11,3 +11,8 @@ a.active hr{
 .prata-regular{
     font-family: 'Prata', serif;
 }
+@media(max-width: 600px){
+    a.active{
+        background-color: black;
+    }
+}
