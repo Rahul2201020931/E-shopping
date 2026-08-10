@@ -1,202 +1,174 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { assets } from '../assets/assets'
-
+import { useContext } from 'react'
+import { ShopContext } from '../context/ShopContext'
 export const Navbar = () => {
 
-  // Controls the mobile sidebar
-  const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false)
 
-  return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    const { setShowSearch } = useContext(ShopContext)
 
-      {/* ================= LEFT : LOGO ================= */}
-      <Link to="/">
-        <img
-          src={assets.logo}
-          className="w-36"
-          alt="Logo"
-        />
-      </Link>
+    return (
+        <div className="flex items-center justify-between py-5 font-medium">
 
+            {/* LEFT - LOGO */}
+            <Link to="/">
+                <img
+                    src={assets.logo}
+                    className="w-36"
+                    alt="Logo"
+                />
+            </Link>
 
-      {/* ================= DESKTOP MENU ================= */}
-      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+            {/* DESKTOP MENU */}
+            <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
 
-        <Link
-          to="/"
-          className="flex flex-col items-center gap-1"
-        >
-          <p>HOME</p>
-        </Link>
+                <Link to="/">
+                    <p>HOME</p>
+                </Link>
 
-        <Link
-          to="/collection"
-          className="flex flex-col items-center gap-1"
-        >
-          <p>COLLECTION</p>
-        </Link>
+                <Link to="/collection">
+                    <p>COLLECTION</p>
+                </Link>
 
-        <Link
-          to="/contact"
-          className="flex flex-col items-center gap-1"
-        >
-          <p>CONTACT</p>
-        </Link>
+                <Link to="/contact">
+                    <p>CONTACT</p>
+                </Link>
 
-      </ul>
+            </ul>
 
+            {/* RIGHT SIDE */}
+            <div className="flex items-center gap-6">
 
-      {/* ================= RIGHT SIDE ================= */}
-      <div className="flex items-center gap-6">
+                {/* SEARCH */}
+                <img
+                    src={assets.search_icon}
+                    className="w-5 cursor-pointer"
+                    alt="Search"
+                    onClick={() => setShowSearch(true)}
+                />
 
-        {/* Search */}
-        <img
-          src={assets.search_icon}
-          className="w-5 cursor-pointer"
-          alt="Search"
-        />
+                {/* PROFILE */}
+                <div className="group relative">
 
+                    <img
+                        src={assets.profile_icon}
+                        className="w-5 cursor-pointer"
+                        alt="Profile"
+                    />
 
-        {/* ================= PROFILE ================= */}
-        <div className="group relative">
+                    <div className="group-hover:block hidden absolute right-0 pt-4 z-50">
 
-          <img
-            src={assets.profile_icon}
-            className="w-5 cursor-pointer"
-            alt="Profile"
-          />
+                        <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
 
-          {/* Profile Dropdown */}
-          <div className="group-hover:block hidden absolute right-0 pt-4 z-50">
+                            <Link
+                                to="/profile"
+                                className="cursor-pointer hover:text-black"
+                            >
+                                Profile
+                            </Link>
 
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+                            <Link
+                                to="/orders"
+                                className="cursor-pointer hover:text-black"
+                            >
+                                Orders
+                            </Link>
 
-              <Link
-                to="/profile"
-                className="cursor-pointer hover:text-black"
-              >
-                Profile
-              </Link>
+                            <p className="cursor-pointer hover:text-black">
+                                Logout
+                            </p>
 
-              <Link
-                to="/orders"
-                className="cursor-pointer hover:text-black"
-              >
-                Orders
-              </Link>
+                        </div>
 
-              <p className="cursor-pointer hover:text-black">
-                Logout
-              </p>
+                    </div>
+
+                </div>
+
+                {/* CART */}
+                <Link to="/cart" className="relative">
+
+                    <img
+                        src={assets.cart_icon}
+                        className="w-5"
+                        alt="Cart"
+                    />
+
+                    <p className="absolute right-[-5px] bottom-[-5px] w-4 h-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">
+                        0
+                    </p>
+
+                </Link>
+
+                {/* MOBILE MENU */}
+                <img
+                    onClick={() => setVisible(true)}
+                    src={assets.menu_icon}
+                    className="w-5 cursor-pointer sm:hidden"
+                    alt="Menu"
+                />
+
+                {/* MOBILE SIDEBAR */}
+                <div
+                    className={`fixed top-0 right-0 bottom-0 z-50 overflow-hidden bg-white transition-all duration-300 ${
+                        visible ? 'w-full' : 'w-0'
+                    }`}
+                >
+
+                    <div className="flex flex-col text-gray-600">
+
+                        <div
+                            onClick={() => setVisible(false)}
+                            className="flex items-center gap-4 p-3 cursor-pointer"
+                        >
+                            <img
+                                src={assets.dropdown_icon}
+                                alt="Back"
+                                className="h-4 rotate-180"
+                            />
+
+                            <p>Back</p>
+                        </div>
+
+                        <NavLink
+                            onClick={() => setVisible(false)}
+                            className="py-2 pl-6 border"
+                            to="/"
+                        >
+                            HOME
+                        </NavLink>
+
+                        <NavLink
+                            onClick={() => setVisible(false)}
+                            className="py-2 pl-6 border"
+                            to="/collection"
+                        >
+                            COLLECTION
+                        </NavLink>
+
+                        <NavLink
+                            onClick={() => setVisible(false)}
+                            className="py-2 pl-6 border"
+                            to="/about"
+                        >
+                            ABOUT
+                        </NavLink>
+
+                        <NavLink
+                            onClick={() => setVisible(false)}
+                            className="py-2 pl-6 border"
+                            to="/contact"
+                        >
+                            CONTACT
+                        </NavLink>
+
+                    </div>
+
+                </div>
 
             </div>
 
-          </div>
-
         </div>
-
-
-        {/* ================= CART ================= */}
-        <Link
-          to="/cart"
-          className="relative"
-        >
-
-          <img
-            src={assets.cart_icon}
-            className="w-5"
-            alt="Cart"
-          />
-
-          {/* Cart Quantity */}
-          <p className="absolute right -[-5px] bottom -[-5px] w-4 h-4 text-center leading-4 bg-black text-white rounded-full text-[8px]">
-            0
-          </p>
-
-        </Link>
-
-
-        {/* ================= MOBILE MENU ICON ================= */}
-        <img
-          onClick={() => setVisible(true)}
-          src={assets.menu_icon}
-          className="w-5 cursor-pointer sm:hidden"
-          alt="Menu"
-        />
-
-
-        {/* ================= MOBILE SIDEBAR ================= */}
-        <div
-          className={`fixed top-0 right-0 bottom-0 z-50 overflow-hidden bg-white transition-all duration-300 ${
-            visible ? 'w-full' : 'w-0'
-          }`}
-        >
-
-          <div className="flex flex-col text-gray-600">
-
-            {/* Back Button */}
-            <div
-              onClick={() => setVisible(false)}
-              className="flex items-center gap-4 p-3 cursor-pointer"
-            >
-
-              <img
-                src={assets.dropdown_icon}
-                alt="Back"
-                className="h-4 rotate-180"
-              />
-
-              <p>Back</p>
-
-            </div>
-
-
-            {/* Home */}
-            <NavLink
-              onClick={() => setVisible(false)}
-              className="py-2 pl-6 border"
-              to="/"
-            >
-              HOME
-            </NavLink>
-
-
-            {/* Collection */}
-            <NavLink
-              onClick={() => setVisible(false)}
-              className="py-2 pl-6 border"
-              to="/collection"
-            >
-              COLLECTION
-            </NavLink>
-
-
-            {/* About */}
-            <NavLink
-              onClick={() => setVisible(false)}
-              className="py-2 pl-6 border"
-              to="/about"
-            >
-              ABOUT
-            </NavLink>
-
-
-            {/* Contact */}
-            <NavLink
-              onClick={() => setVisible(false)}
-              className="py-2 pl-6 border"
-              to="/contact"
-            >
-              CONTACT
-            </NavLink>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  )
+    )
 }
