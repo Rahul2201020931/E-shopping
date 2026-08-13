@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const NewsLetterBox = () => {
+const NewsLetterBox = () => {
   return (
     <div>
         <div className='bg-gray-100 py-10 px-4 sm:px-6 lg:px-8'>
@@ -22,3 +22,5 @@ export const NewsLetterBox = () => {
     </div>
   )
 }
+
+export default NewsLetterBox;
