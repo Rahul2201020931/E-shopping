@@ -17,6 +17,24 @@ const createToken = (id) => {
 
 //Route for user login
 const loginUser = async (req, res) => {
+    try{
+        const { email, password } = req.body;
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.json({ success: false, message: "User does not exist" });
+        }
+        // Check if password is correct
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.json({ success: false, message: "Invalid password" });
+        }
+        // Create token
+        const token = createToken(user._id);
+        return res.json({ success: true, message: "User logged in successfully", token });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error logging in user" });
+    }
 
 
 }
@@ -52,6 +70,17 @@ const registerUser = async (req, res) => {
 
 //Route for admin login
 const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email+password, process.env.JWT_SECRET, { expiresIn: '1h' }  );
+            return res.json({ success: true, message: "Admin logged in successfully", token });
+        } else {
+            return res.json({ success: false, message: "Invalid admin credentials" });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error logging in admin" });
+    }
 
 }
 
