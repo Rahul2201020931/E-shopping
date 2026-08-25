@@ -1,23 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import Title from '../components/Title';
-// Backend API is disabled for frontend-only work.
-// import axios from 'axios';
+import axios from 'axios';
 
 const Orders = () => {
 
-  const { currency } = useContext(ShopContext);
+  const { backendUrl, token, currency } = useContext(ShopContext);
   const [orderData, setOrderData] = useState([])
 
-  // Backend order fetching is intentionally disabled while the frontend is being styled.
   const loadOrderData = async () => {
-    // try {
-    //   if(!token) {
-    //     return null
-    //   }
-    //   const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers: {token}})
-    //   if(response.data.success){
-    //     let allOrderItem = []
+    try {
+      if(!token) {
+        return null
+      }
+   
+      const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers: {token}})
+      if(response.data.success){
+        let allOrderItem = []
         response.data.orders.map((order) => {
          order.items.map((item) => {
             item['status'] = order.status
@@ -27,10 +26,13 @@ const Orders = () => {
             allOrderItem.push(item)
          })
         })
-    //     setOrderData(allOrderItem.reverse());
-    //   }
-    // } catch (error) {
-    // }
+        setOrderData(allOrderItem.reverse());
+        
+      }
+
+    } catch (error) {
+      
+    }
   }
 
   useEffect(() => {

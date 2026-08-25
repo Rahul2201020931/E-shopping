@@ -1,15 +1,13 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { ShopContext } from '../context/ShopContext'
-// Backend API is disabled for frontend-only work.
-// import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
   const [method,setMothod] = useState('Cash On Delivery');
-  const {navigate, cartItems, setCartItems, getCartAmount, delivery_fee, products } = useContext(ShopContext);
+  const { navigate, setCartItems } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
     firstName:'',
@@ -33,41 +31,6 @@ const PlaceOrder = () => {
   const onSubmitHandler = async (event) => {
      event.preventDefault()
      // Backend API call is commented out for frontend-only development.
-     // try {
-     //   let orderItems = []
-     //   for(const items in cartItems){
-     //     for(const item in cartItems[items]){
-     //       if(cartItems[items][item] > 0){
-     //         const itemInfo = structuredClone(products.find(product => product._id === items))
-     //         if(itemInfo){
-     //           itemInfo.size = item
-     //           itemInfo.quantity = cartItems[items][item]
-     //           orderItems.push(itemInfo)
-     //         }
-     //       }
-     //     }
-     //   }
-     //   let orderData = {
-     //     address: formData,
-     //     items: orderItems,
-     //     amount: getCartAmount() + delivery_fee
-     //   }
-     //   switch(method) {
-     //    case 'Cash On Delivery':
-     //      const response = await axios.post(backendUrl + '/api/order/place', orderData, {headers: {token}})
-     //      if(response.data.success){
-     //        setCartItems({})
-     //        navigate('/orders')
-     //      } else {
-     //        toast.error(response.data.message)
-     //      }
-     //      break;
-     //    default:
-     //      break;
-     //   }
-     // } catch (error) {
-     //   console.log(error);
-     // }
      setCartItems({})
      navigate('/orders')
      toast.info('Frontend mode: order submission is disabled until the backend is ready.')
@@ -76,7 +39,7 @@ const PlaceOrder = () => {
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t' >
       {/* -------------- left Side ----------------- */}
-      <div className='flex flex-col gap-4 w-full sm:max-w-[480px]' >
+      <div className='flex flex-col gap-4 w-full sm:max-w-120' >
 
         <div className='text-xl sm:text-2xl my-3'>
             <Title  text1={'DELIVERY'} text2={'INFORMATION'}/>
