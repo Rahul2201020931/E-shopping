@@ -2,12 +2,13 @@ import { useContext, useState } from 'react'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { ShopContext } from '../context/ShopContext'
+import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
   const [method,setMothod] = useState('Cash On Delivery');
-  const { navigate, setCartItems } = useContext(ShopContext);
+  const { navigate, cartItems, setCartItems, getCartAmount, delivery_fee, products, backendUrl, token } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
     firstName:'',
@@ -27,13 +28,48 @@ const PlaceOrder = () => {
     setFormData( data => ({...data,[name]:value }))
   }
 
-  // Backend checkout flow is intentionally disabled while the frontend is being built.
   const onSubmitHandler = async (event) => {
      event.preventDefault()
-     // Backend API call is commented out for frontend-only development.
-     setCartItems({})
-     navigate('/orders')
-     toast.info('Frontend mode: order submission is disabled until the backend is ready.')
+     if (!token) {
+       toast.error('Please login before placing an order')
+       navigate('/login')
+       return
+     }
+
+     try {
+       const orderItems = []
+       for (const productId in cartItems) {
+         for (const size in cartItems[productId]) {
+           const quantity = cartItems[productId][size]
+           if (quantity > 0) {
+             const product = products.find((item) => item._id === productId)
+             if (product) {
+               orderItems.push({ ...product, size, quantity })
+             }
+           }
+         }
+       }
+
+       const response = await axios.post(
+         `${backendUrl}/api/order/place`,
+         {
+           address: formData,
+           items: orderItems,
+           amount: getCartAmount() + delivery_fee,
+         },
+         { headers: { token } },
+       )
+
+       if (response.data.success) {
+         setCartItems({})
+         toast.success(response.data.message)
+         navigate('/order')
+       } else {
+         toast.error(response.data.message)
+       }
+     } catch (error) {
+       toast.error(error.response?.data?.message || error.message)
+     }
   }
 
   return (

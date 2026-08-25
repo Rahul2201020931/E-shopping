@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import Title from '../components/Title';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Orders = () => {
 
@@ -27,11 +28,12 @@ const Orders = () => {
          })
         })
         setOrderData(allOrderItem.reverse());
-        
+      } else {
+        toast.error(response.data.message)
       }
 
     } catch (error) {
-      
+      toast.error(error.response?.data?.message || error.message)
     }
   }
 
