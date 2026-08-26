@@ -1,79 +1,91 @@
 import React from "react";
-import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import NewsLetterBox from "../components/NewsLetterBox";
+import { Gem, Shirt, Leaf, UserCheck } from "lucide-react";
 
 const About = () => {
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 border-t">
-        <Title text1={"ABOUT"} text2={"US"} />
+    <div className="px-4 sm:px-8 lg:px-16 max-w-[1400px] mx-auto">
+
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14 pt-8 md:pt-14">
+
+        {/* Left - Text */}
+        <div className="w-full md:w-1/2 flex flex-col gap-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
+            WE'RE MORE THAN<br />JUST CLOTHES
+          </h1>
+
+          <p className="text-gray-600 leading-relaxed text-sm sm:text-base max-w-md">
+            At <b className="text-gray-800">FOREVER</b>, we believe fashion
+            is a form of self-expression. Our mission is to create timeless
+            pieces that blend comfort, quality, and style — made to be worn,
+            loved, and lived in.
+          </p>
+
+          <p className="font-serif italic text-xl sm:text-2xl text-gray-700 mt-2">
+            Forever Team
+          </p>
+        </div>
+
+        {/* Right - Image */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+          <img
+            src={assets.about_img}
+            alt="Forever clothing rack"
+            className="w-full max-w-md md:max-w-lg h-auto object-cover rounded-sm"
+          />
+        </div>
+
       </div>
 
-      <div className="my-10 flex flex-col md:flex-row gap-16">
-        <img
-          className="w-full md:max-w-[450px]"
-          src={assets.about_img}
-          alt=""
-        />
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
-          <p>
-            Forever was born out of a passion for innovation and a desire to
-            revolutionize the way people shop online. Our journey began with a
-            simple idea: to provide a platform where customers can easily
-            discover, explore, and purchase a wide range of products from the
-            comfort of their homes.
-          </p>
-          <p>
-            Since our inception, we've worked tirelessly to curate a diverse
-            selection of high-quality products that cater to every taste and
-            preference. From fashion and beauty to electronics and home
-            essentials, we offer an extensive collection sourced from trusted
-            brands and suppliers.
-          </p>
-          <b className="text-gray-800">Our Mission</b>
-          <p>
-            Our mission at Forever is to empower customers with choice,
-            convenience, and confidence. We're dedicated to providing a seamless
-            shopping experience that exceeds expectations, from browsing and
-            ordering to delivery and beyond. We believe that shopping should be
-            enjoyable, affordable, and accessible to everyone.
-          </p>
-        </div>
-      </div>
+      {/* Built on Values */}
+      <div className="mt-16 sm:mt-24">
 
-      <div className="text-xl py-4">
-        <Title text1={"WHY"} text2={"CHOOSE US"} />
-      </div>
+        <p className="text-center text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-800 uppercase mb-12">
+          Built On Values
+        </p>
 
-      <div className="flex flex-col md:flex-row text-sm mb-20">
-        <div className="border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
-          <b>Quality Assurance:</b>
-          <p className="text-gray-600">
-            We meticulously select and vet each product to ensure it meets our
-            stringent quality standards. From materials to craftsmanship, every
-            item in our collection undergoes rigorous inspection so you receive
-            only the best. Your satisfaction and trust are our top priorities.
-          </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 sm:gap-x-10 pb-14 border-b border-gray-200">
+
+          <div className="flex flex-col items-center text-center gap-3 px-2">
+            <Gem className="w-6 h-6 sm:w-7 sm:h-7 text-gray-800 shrink-0" strokeWidth={1.5} />
+            <b className="text-xs sm:text-sm tracking-wide text-gray-800">QUALITY FIRST</b>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+              We never compromise on quality. Every piece is crafted to last.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center text-center gap-3 px-2">
+            <Shirt className="w-6 h-6 sm:w-7 sm:h-7 text-gray-800 shrink-0" strokeWidth={1.5} />
+            <b className="text-xs sm:text-sm tracking-wide text-gray-800">TIMELESS DESIGN</b>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+              Clean, minimal and versatile styles that never go out of trend.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center text-center gap-3 px-2">
+            <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-gray-800 shrink-0" strokeWidth={1.5} />
+            <b className="text-xs sm:text-sm tracking-wide text-gray-800">SUSTAINABLE CHOICE</b>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+              We care about the planet and make conscious choices for a better future.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center text-center gap-3 px-2">
+            <UserCheck className="w-6 h-6 sm:w-7 sm:h-7 text-gray-800 shrink-0" strokeWidth={1.5} />
+            <b className="text-xs sm:text-sm tracking-wide text-gray-800">MADE FOR YOU</b>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+              Designed to fit your life, your vibe and your individuality.
+            </p>
+          </div>
+
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
-          <b>Convenience:</b>
-          <p className="text-gray-600">
-            With our user-friendly interface and hassle-free ordering process,
-            shopping has never been easier. Browse thousands of products,
-            compare prices, and place orders with just a few clicks – anytime,
-            anywhere. We bring the store to your fingertips.
-          </p>
-        </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
-          <b>Exceptional Customer Service:</b>
-          <p className="text-gray-600">
-            Our dedicated team of professionals is here to assist you every step
-            of the way. From pre-purchase inquiries to post-purchase support, we
-            strive to provide timely and helpful assistance. Your satisfaction
-            is our mission, and we go above and beyond to ensure it.
-          </p>
-        </div>
+
+        <p className="text-center text-[10px] sm:text-xs tracking-[0.25em] text-gray-500 uppercase py-8">
+          Forever isn't just a brand, it's a lifestyle
+        </p>
+
       </div>
 
       <NewsLetterBox />

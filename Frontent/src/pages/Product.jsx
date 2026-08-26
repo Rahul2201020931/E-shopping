@@ -1,31 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
-import { toast } from 'react-toastify';
 
 const Product = () => {
 
   const { productId } = useParams();
   const { products, currency, addToCart } = useContext(ShopContext);
-  const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
-
-  const fetchProductData = async () => {
-     products.map((item) => {
-      if(item._id === productId){
-        setProductData(item);
-        setImage(item.image[0]);
-        return null;
-      }
-     })
-  }
-
-  useEffect(() => {
-   fetchProductData();
-  }, [productId, products])
+  const productData = products.find((item) => item._id === productId);
+  const selectedImage = productData?.image.includes(image) ? image : productData?.image[0];
 
   return productData ? (
     <div  className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
@@ -42,7 +28,7 @@ const Product = () => {
            }
         </div>
         <div className='w-full sm:w-[80%]'>
-          <img className='w-full h-auto'  src={image} alt="" />
+          <img className='w-full h-auto'  src={selectedImage} alt={productData.name} />
         </div>
       </div>
 
@@ -65,11 +51,11 @@ const Product = () => {
             <div className='flex gap-2'>
               {
                 productData.sizes.map((item,index) => (
-                  <button onClick={() => setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500': ''}`}  key={index}>{item}</button>
+                  <button type='button' onClick={() => setSize(item)} aria-pressed={item === size} className={`border py-2 px-4 bg-gray-100 transition-colors ${item === size ? 'border-orange-500 bg-orange-50': 'border-transparent hover:border-gray-400'}`}  key={index}>{item}</button>
                 ))}
             </div>
         </div>
-        <button onClick={() => addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+        <button type='button' disabled={!size} onClick={() => addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm transition-colors active:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-300'>{size ? 'ADD TO CART' : 'SELECT A SIZE'}</button>
         <hr className='mt-8 sm:w-4/5'/>
         <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
            <p>100% Original product.</p>

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react'
-import {assets} from '../assets/assets';
+import { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
+import { Search, User, ShoppingBag, Menu, X } from 'lucide-react'
+
 const Navbar = () => {
 
-  const[visible, setvisible] = useState(false);
+  const [visible, setvisible] = useState(false);
 
-  const {setShowSearch, getCartCount, navigate, token, setToken, setCartItems} = useContext(ShopContext);
+  const { setShowSearch, getCartCount, navigate, token, setToken, setCartItems } = useContext(ShopContext);
 
   const logout = () => {
     localStorage.removeItem('token')
@@ -16,75 +17,116 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex items-center justify-between py-5 font-medium'>
+    <div className='flex items-center justify-between py-5 font-medium relative'>
 
-      <Link to='/' ><img src={assets.logo} className='w-36' alt="" /></Link>
+      {/* Left - Nav Links */}
+      <ul className='hidden sm:flex gap-6 text-xs tracking-wide text-gray-700 uppercase'>
 
-        <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
-          
         <NavLink to='/' className='flex flex-col items-center gap-1'>
-          <p>HOME</p>
+          <p>Home</p>
           <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
         </NavLink>
-          
+
         <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-          <p>COLLECTION</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden ' />
-        </NavLink>
-          
-        <NavLink to='/about' className='flex flex-col items-center gap-1'>
-          <p>ABOUT</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden ' />
-        </NavLink>
-          
-        <NavLink to='/contact' className='flex flex-col items-center gap-1'>
-          <p>CONTACT</p>
+          <p>Collection</p>
           <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
         </NavLink>
-        
-          </ul>
-        
 
-        <div className='flex items-center gap-6'>
-            <img onClick={() => setShowSearch(true)}  src={assets.search_icon} className='w-5 cursor-pointer'  alt='' />
+        <NavLink to='/about' className='flex flex-col items-center gap-1'>
+          <p>About</p>
+          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+        </NavLink>
 
-            <div className='group relative' >
-              <img onClick={() => token ? null : navigate('/login')} src={assets.profile_icon} alt="" className='w-5 cursor-pointer' />
-                {/* DROP DOWN */}
-                {token && 
-                <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4' >
-                  <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                    <p className='cursor-pointer hover:text-black'>My Profile</p>
-                    <p onClick={() => navigate('/order')}  className='cursor-pointer hover:text-black' >Orders </p>
-                    <p onClick={logout} className='cursor-pointer hover:text-black' >Logout</p>
-                  </div>
-                </div>}
-            </div>
+        <NavLink to='/contact' className='flex flex-col items-center gap-1'>
+          <p>Contact</p>
+          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+        </NavLink>
 
-            <Link to='/cart' className="relative">
-               <img src={assets.cart_icon}  className='w-5 min-w-5' alt=""  />
-               <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
-            </Link>
-            
-            <img  onClick={() => setvisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+      </ul>
 
-          </div>
-      
-         {/* Sidebar  menu for small screen  */}
-         <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0' } `} >
-            <div className='flex flex-col text-gray-600'>
-              <div onClick={() => setvisible(false)}  className='flex items-center gap-4 p-3 cursor-pointer'>
-                <img src={assets.dropdown_icon} alt="" className='h-4 rotate-180'/>
-                <p>Back</p>
+      {/* Mobile menu icon - left on small screens */}
+      <button
+        type='button'
+        onClick={() => setvisible(true)}
+        aria-label='Open navigation menu'
+        className='sm:hidden p-1 text-gray-800'
+      >
+        <Menu className='w-5 h-5' />
+      </button>
+
+      {/* Center - Logo */}
+      <Link to='/' className='absolute left-1/2 -translate-x-1/2 text-center'>
+        <p className='text-xl sm:text-2xl font-bold tracking-widest text-gray-900 leading-none'>FOREVER</p>
+        <p className='text-[9px] sm:text-[10px] tracking-[0.3em] text-gray-500'>CLOTHING</p>
+      </Link>
+
+      {/* Right - Icons */}
+      <div className='flex items-center gap-4 sm:gap-6'>
+
+          <button type='button' onClick={() => setShowSearch(true)} aria-label='Search products' className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer'>
+          <Search className='w-4 h-4' />
+          <span className='hidden md:inline'>SEARCH</span>
+        </button>
+        <button type='button' onClick={() => setShowSearch(true)} aria-label='Search products' className='sm:hidden p-1'>
+          <Search className='w-4 h-4' />
+        </button>
+
+        <div className='group relative'>
+          <button type='button' onClick={() => token ? null : navigate('/login')} aria-label={token ? 'Open account menu' : 'Log in'} className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer'>
+            <User className='w-4 h-4' />
+            <span className='hidden md:inline'>LOGIN</span>
+          </button>
+          <button type='button' onClick={() => token ? null : navigate('/login')} aria-label={token ? 'Open account menu' : 'Log in'} className='sm:hidden p-1'>
+            <User className='w-4 h-4' />
+          </button>
+
+          {/* DROPDOWN */}
+          {token &&
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
+              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
+                <p className='cursor-pointer hover:text-black'>My Profile</p>
+                <p onClick={() => navigate('/order')} className='cursor-pointer hover:text-black'>Orders</p>
+                <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
               </div>
-              
-              <NavLink  onClick={() => setvisible(false)}  className='py-2 pl-6 border' to='/'>HOME</NavLink>
-              <NavLink  onClick={() => setvisible(false)}  className='py-2 pl-6 border' to='/collection'>COLLECTION</NavLink>
-              <NavLink  onClick={() => setvisible(false)}  className='py-2 pl-6 border' to='/about'>ABOUT</NavLink>
-              <NavLink  onClick={() => setvisible(false)}  className='py-2 pl-6 border' to='/contact'>CONTACT</NavLink>
             </div>
-          </div>
+          }
         </div>
+
+        {/* <button className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer'>
+          <Heart className='w-4 h-4' />
+          <span className='hidden md:inline'>WISHLIST</span>
+        </button>
+        <Heart className='w-4 h-4 cursor-pointer sm:hidden' /> */}
+
+        <Link to='/cart' className='hidden sm:flex items-center gap-1 text-xs text-gray-700'>
+          <ShoppingBag className='w-4 h-4' />
+          <span className='hidden md:inline'>CART ({getCartCount()})</span>
+        </Link>
+        <Link to='/cart' className='relative sm:hidden'>
+          <ShoppingBag className='w-5 h-5' />
+          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
+        </Link>
+
+      </div>
+
+      {/* Sidebar menu for small screen */}
+      <div className={`fixed inset-0 overflow-hidden bg-black/20 transition-opacity z-50 sm:hidden ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
+        <div className={`h-full w-[min(86vw,360px)] bg-white text-gray-600 shadow-xl transition-transform duration-300 ${visible ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className='flex items-center justify-between border-b p-4'>
+            <p className='text-xs font-semibold tracking-[0.2em] text-gray-900'>MENU</p>
+            <button type='button' onClick={() => setvisible(false)} aria-label='Close navigation menu' className='p-1 text-gray-700'>
+              <X className='h-5 w-5' />
+            </button>
+          </div>
+
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/'>Home</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/collection'>Collection</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/about'>About</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/contact'>Contact</NavLink>
+        </div>
+      </div>
+
+    </div>
   )
 }
 
