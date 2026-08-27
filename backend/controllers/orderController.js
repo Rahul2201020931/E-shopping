@@ -1,7 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
-// Placing orders using COD Method
+// Place an order and hand payment details off through WhatsApp.
 
 const placeOrder = async (req,res) => {
   try {
@@ -12,15 +12,15 @@ const placeOrder = async (req,res) => {
     items,
     address,
     amount,
-    paymentMethod: 'Cash On Delivery',
-    payment: 'false',
+    paymentMethod: 'WhatsApp Payment',
+    payment: false,
     date: Date.now()
    }
     const newOrder = new orderModel(orderData)
     await newOrder.save()
 
     await userModel.findByIdAndUpdate(userId, {cartData:{}})
-    res.json({success: true, message: 'Order Placed'})
+    res.json({ success: true, message: 'Order Placed', orderId: newOrder._id })
 
   } catch (error) {
     console.log(error)

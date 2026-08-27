@@ -7,8 +7,10 @@ import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
-  const [method,setMothod] = useState('Cash On Delivery');
-  const { navigate, cartItems, setCartItems, getCartAmount, delivery_fee, products, backendUrl, token } = useContext(ShopContext);
+  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER
+  const [method,setMothod] = useState('WhatsApp Payment');
+  const [loading, setLoading] = useState(false)
+  const { navigate, cartItems, setCartItems, getCartAmount, delivery_fee, products, backendUrl, token, currency } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
     firstName:'',
@@ -28,6 +30,37 @@ const PlaceOrder = () => {
     setFormData( data => ({...data,[name]:value }))
   }
 
+  const createWhatsAppMessage = (orderId, orderItems) => {
+    let message = `NEW WHATSAPP PAYMENT ORDER - FOREVER\n\n`
+    message += `Order ID: ${orderId}\n\n`
+    message += `CUSTOMER DETAILS\n`
+    message += `Name: ${formData.firstName} ${formData.lastName}\n`
+    message += `Phone: ${formData.phone}\n`
+    message += `Email: ${formData.email}\n\n`
+    message += `DELIVERY ADDRESS\n`
+    message += `${formData.street}\n`
+    message += `${formData.city}, ${formData.state}\n`
+    message += `${formData.zipcode}, ${formData.country}\n\n`
+    message += `ORDER ITEMS\n\n`
+
+    orderItems.forEach((item, index) => {
+      message += `${index + 1}. ${item.name}\n`
+      message += `   Size: ${item.size}\n`
+      message += `   Quantity: ${item.quantity}\n`
+      message += `   Price: ${currency}${item.price * item.quantity}\n\n`
+    })
+
+    const subtotal = getCartAmount()
+    message += `--------------------\n`
+    message += `Subtotal: ${currency}${subtotal}\n`
+    message += `Delivery: ${currency}${delivery_fee}\n`
+    message += `TOTAL: ${currency}${subtotal + delivery_fee}\n\n`
+    message += `Payment Method: WhatsApp Payment\n`
+    message += `Payment Status: Pending\n\n`
+    message += `Thank you for shopping with FOREVER`
+    return message
+  }
+
   const onSubmitHandler = async (event) => {
      event.preventDefault()
      if (!token) {
@@ -35,7 +68,9 @@ const PlaceOrder = () => {
        navigate('/login')
        return
      }
+     if (loading) return
 
+     setLoading(true)
      try {
        const orderItems = []
        for (const productId in cartItems) {
@@ -62,6 +97,9 @@ const PlaceOrder = () => {
 
        if (response.data.success) {
          setCartItems({})
+         const message = createWhatsAppMessage(response.data.orderId, orderItems)
+         const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+         window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
          toast.success(response.data.message)
          navigate('/order')
        } else {
@@ -69,6 +107,8 @@ const PlaceOrder = () => {
        }
      } catch (error) {
        toast.error(error.response?.data?.message || error.message)
+     } finally {
+       setLoading(false)
      }
   }
 
@@ -109,14 +149,14 @@ const PlaceOrder = () => {
            <Title text1={'PAYMENT'} text2={'METHOD'}  />
            {/* ----------------- Payment Method Selection ---------------- */}
            <div className='flex gap-3 flex-col lg:flex-row'> 
-              <div onClick={() => setMothod('Cash On Delivery')}  className='flex items-center gap-3 border p-2 px-3 cursor-pointer' >
-                <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'Cash On Delivery' ? 'bg-green-400' : '' } `} ></p>
-                <p className='text-gray-500 text-sm font-medium mx-4' >CASH ON DELIVERY</p>
+              <div onClick={() => setMothod('WhatsApp Payment')}  className='flex items-center gap-3 border p-2 px-3 cursor-pointer' >
+                <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'WhatsApp Payment' ? 'bg-green-400' : '' } `} ></p>
+                <p className='text-gray-500 text-sm font-medium mx-4' >PAY THROUGH WHATSAPP</p>
               </div>
            </div>
 
            <div className='w-full text-end mt-8 ' >
-              <button type='submit'  className='bg-black text-white px-16  py-3 ' >PLACE ORDER</button>
+              <button type='submit' disabled={loading} className='bg-black text-white px-16 py-3 disabled:opacity-50' >{loading ? 'PLACING ORDER...' : 'PLACE ORDER'}</button>
            </div>
         </div>
       </div>
