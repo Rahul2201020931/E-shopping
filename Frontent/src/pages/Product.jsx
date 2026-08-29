@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
@@ -10,6 +10,11 @@ const Product = () => {
   const { products, currency, addToCart } = useContext(ShopContext);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
+  
+  // Scroll to top when component mounts or productId changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [productId])
   const productData = products.find((item) => item._id === productId);
   const selectedImage = productData?.image.includes(image) ? image : productData?.image[0];
 

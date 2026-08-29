@@ -2,17 +2,52 @@
 
 @import "tailwindcss";
 
-a.active hr{
-    display: block;
+/* ================= GLOBAL RESET ================= */
+
+html,
+body,
+#root {
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
 }
-*{
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 100%;
+}
+
+#root {
+    width: 100%;
+    min-width: 100%;
+}
+
+/* ================= GLOBAL ================= */
+
+* {
+    box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
 }
-.prata-regular{
+
+a.active hr {
+    display: block;
+}
+
+.prata-regular {
     font-family: 'Prata', serif;
 }
-@media(max-width: 600px){
-    a.active{
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+    a.active {
         background-color: black;
     }
 }

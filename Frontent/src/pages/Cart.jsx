@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import CartTotal from "../components/CartTotal";
@@ -7,6 +7,11 @@ import { Trash2 } from "lucide-react";
 export const Cart = () => {
   const { products, currency, cartItems, updateQuantity, navigate } =
     useContext(ShopContext);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const cartData = Object.entries(cartItems).flatMap(([productId, sizes]) =>
     Object.entries(sizes)

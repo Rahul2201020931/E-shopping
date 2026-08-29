@@ -11,7 +11,10 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   
-  //  prevent loading page
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   
   const onSubmitHandler = async (event) => {
     event.preventDefault();

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { ShopContext } from '../context/ShopContext'
@@ -11,6 +11,11 @@ const PlaceOrder = () => {
   const [method,setMothod] = useState('WhatsApp Payment');
   const [loading, setLoading] = useState(false)
   const { navigate, cartItems, setCartItems, getCartAmount, delivery_fee, products, backendUrl, token, currency } = useContext(ShopContext);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const [formData, setFormData] = useState({
     firstName:'',

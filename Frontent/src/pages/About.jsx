@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { assets } from "../assets/assets";
 import NewsLetterBox from "../components/NewsLetterBox";
 import { Gem, Shirt, Leaf, UserCheck } from "lucide-react";
 
 const About = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className="px-4 sm:px-8 lg:px-16 max-w-[1400px] mx-auto">
 
