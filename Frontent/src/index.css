@@ -44,6 +44,194 @@ a.active hr {
     font-family: 'Prata', serif;
 }
 
+/* ================= ANIMATIONS & TRANSITIONS ================= */
+
+/* Button press feedback - subtle, imperceptible speed */
+button,
+[role="button"],
+a[role="button"] {
+    @apply transition-transform duration-100 ease-out;
+}
+
+button:active,
+[role="button"]:active,
+a[role="button"]:active {
+    @apply scale-97;
+}
+
+/* Form focus states - fast, barely noticeable */
+input:focus,
+textarea:focus,
+select:focus {
+    @apply transition-all duration-75 ease-out;
+}
+
+/* Drawer/Modal enter animations */
+@keyframes drawer-slide-in {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes drawer-slide-out {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes backdrop-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes backdrop-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Search bar animations */
+@keyframes search-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes search-slide-down {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
+
+/* Dropdown animations */
+@keyframes dropdown-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Form fade transitions */
+@keyframes form-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes form-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+/* Modal enter animations */
+@keyframes modal-backdrop-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Utility classes for animations */
+.animate-drawer-in {
+    animation: drawer-slide-in 0.3s ease-out forwards;
+}
+
+.animate-drawer-out {
+    animation: drawer-slide-out 0.3s ease-out forwards;
+}
+
+.animate-backdrop-in {
+    animation: backdrop-fade-in 0.15s ease-out forwards;
+}
+
+.animate-backdrop-out {
+    animation: backdrop-fade-out 0.15s ease-out forwards;
+}
+
+.animate-search-in {
+    animation: search-slide-up 0.25s ease-out forwards;
+}
+
+.animate-search-out {
+    animation: search-slide-down 0.25s ease-out forwards;
+}
+
+.animate-dropdown-in {
+    animation: dropdown-pop-in 0.2s ease-out forwards;
+}
+
+.animate-form-in {
+    animation: form-fade-in 0.2s ease-out forwards;
+}
+
+.animate-form-out {
+    animation: form-fade-out 0.12s ease-out forwards;
+}
+
+.animate-modal-backdrop-in {
+    animation: modal-backdrop-in 0.15s ease-out forwards;
+}
+
+.animate-modal-in {
+    animation: modal-scale-in 0.2s ease-out forwards;
+}
+
+/* Smooth scale class for :active states */
+.scale-97 {
+    transform: scale(0.97);
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 600px) {

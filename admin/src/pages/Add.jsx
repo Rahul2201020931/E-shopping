@@ -95,19 +95,19 @@ const Add = ({token}) => {
 
     <div className='w-full' >
       <p className='mb-2' >Product name</p>
-      <input onChange={(e) => setName(e.target.value)} value={name} className='w-full max-w-[500px] px-3 py-2' type="text" placeholder='Type here' required />
+      <input onChange={(e) => setName(e.target.value)} value={name} className='w-full max-w-[500px] px-3 py-2 transition-all duration-150 focus:ring-1 focus:ring-black border border-gray-300' type="text" placeholder='Type here' required />
     </div>
 
     <div className='w-full' >
       <p className='mb-2' >Product description</p>
-      <textarea onChange={(e) => setDescription(e.target.value)} value={description} className='w-full max-w-[500px] px-3 py-2' type="text" placeholder='Write content here' required />
+      <textarea onChange={(e) => setDescription(e.target.value)} value={description} className='w-full max-w-[500px] px-3 py-2 transition-all duration-150 focus:ring-1 focus:ring-black border border-gray-300' type="text" placeholder='Write content here' required />
     </div>
 
     <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8 '>
 
       <div>
         <p className='mb-2' >Product category</p>
-        <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
+        <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2 transition-all duration-150 focus:ring-1 focus:ring-black border border-gray-300'>
           <option value="Men">Men</option>
           <option value="Women">Women</option>
           <option value="Kids">Kids</option>
@@ -116,7 +116,7 @@ const Add = ({token}) => {
 
       <div>
         <p className='mb-2' >Sub category</p>
-        <select onChange={(e) => setSubCategory(e.target.value)}  className='w-full px-3 py-2' >
+        <select onChange={(e) => setSubCategory(e.target.value)}  className='w-full px-3 py-2 transition-all duration-150 focus:ring-1 focus:ring-black border border-gray-300' >
           <option value="Topwear">Topwear</option>
           <option value="Bottomwear">Bottomwear</option>
           <option value="Winterwear">Winterwear</option>
@@ -125,7 +125,7 @@ const Add = ({token}) => {
 
       <div>
         <p className='mb-2' >Product Price</p>
-        <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]'  type='Number' placeholder='25' />
+        <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px] transition-all duration-150 focus:ring-1 focus:ring-black border border-gray-300'  type='Number' placeholder='25' />
       </div>
 
     </div>
@@ -136,23 +136,23 @@ const Add = ({token}) => {
 
       <div className='flex gap-3' >
         <div onClick={() => setSizes(prev => prev.includes('S') ? prev.filter(item => item !== 'S') : [...prev, 'S'] )}>
-          <p className={`${sizes.includes('S') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`} >S</p>
+          <p className={`${sizes.includes('S') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer transition-all duration-150 active:scale-97`} >S</p>
         </div>
 
         <div onClick={() => setSizes(prev => prev.includes('M') ? prev.filter(item => item !== 'M') : [...prev, 'M'] )} >
-          <p className={`${sizes.includes('M') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`} >M</p>
+          <p className={`${sizes.includes('M') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer transition-all duration-150 active:scale-97`} >M</p>
         </div>
         
         <div onClick={() => setSizes(prev => prev.includes('L') ? prev.filter(item => item !== 'L') : [...prev, 'L'])} >
-          <p className={`${sizes.includes('L') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`} >L</p>
+          <p className={`${sizes.includes('L') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer transition-all duration-150 active:scale-97`} >L</p>
         </div>        
 
         <div onClick={() => setSizes(prev => prev.includes('XL') ? prev.filter(item => item !== 'XL') : [...prev, 'XL'] )} >
-          <p className={`${sizes.includes('XL') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`} >XL</p>
+          <p className={`${sizes.includes('XL') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer transition-all duration-150 active:scale-97`} >XL</p>
         </div>
 
         <div onClick={() => setSizes(prev => prev.includes('XXL') ? prev.filter(item => item !== 'XXL') : [...prev, 'XXL'])} >
-          <p className={`${sizes.includes('XXL') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`}>XXL</p>
+          <p className={`${sizes.includes('XXL') ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer transition-all duration-150 active:scale-97`}>XXL</p>
         </div>
       </div>
 
@@ -165,7 +165,7 @@ const Add = ({token}) => {
     </div>
 
 
-    <button type='submit' className='w-28 py-3 mt-4 bg-black text-white cursor-pointer'>ADD</button>
+    <button type='submit' className='w-28 py-3 mt-4 bg-black text-white cursor-pointer transition-all duration-200 hover:bg-gray-800 active:scale-97'>ADD</button>
     </form>
   )
 }

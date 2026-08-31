@@ -96,44 +96,48 @@ const Collection = () => {
     <div className='flex flex-col sm:flex-row gap-3 sm:gap-10 pt-5 sm:pt-10 border-t' >
         
       {/* filter Options */}
-      <div className='w-full sm:min-w-60'>
-         <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-base sm:text-xl flex items-center cursor-pointer gap-2'>FILTERS
+      <div className='w-full sm:w-60 sm:min-w-60'>
+         <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-base sm:text-lg flex items-center cursor-pointer gap-2 font-medium transition-colors duration-200 hover:text-gray-600 active:scale-97'>FILTERS
           <img className={`h-3 sm:hidden transition-transform duration-300 ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
          </p>
 
          {/* Category Filter */}
-
-         <div className={`border border-gray-300 pl-4 sm:pl-5 py-3 mt-4 sm:mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-           <p className='mb-3 text-xs sm:text-sm font-medium'>CATEGORIES</p>
-           <div className='flex flex-col gap-2 text-xs sm:text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Men"} onChange={toggleCategory} />Men
+         <div className={`border border-gray-300 pl-3 sm:pl-4 py-2 sm:py-3 mt-3 sm:mt-4 ${showFilter ? 'block' : 'hidden'} sm:block max-h-[150px] sm:max-h-none overflow-y-auto sm:overflow-visible`}>
+           <p className='mb-2 text-xs sm:text-sm font-medium text-gray-800'>CATEGORIES</p>
+           <div className='flex flex-col gap-1.5 text-xs sm:text-sm font-light text-gray-700'>
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Men"} onChange={toggleCategory} />
+              <span>Men</span>
             </p>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Women"} onChange={toggleCategory} />Women
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Women"} onChange={toggleCategory} />
+              <span>Women</span>
             </p>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Kids"} onChange={toggleCategory} />Kids
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Kids"} onChange={toggleCategory} />
+              <span>Kids</span>
             </p>
            </div>
          </div>
 
         {/* Sub Category Filter */}
-        <div className={`border border-gray-300 pl-4 sm:pl-5 py-3 my-3 sm:my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
-           <p className='mb-3 text-xs sm:text-sm font-medium'>TYPE</p>
-           <div className='flex flex-col gap-2 text-xs sm:text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Topwear"} onChange={toggleSubCategory} />Topwear
+        <div className={`border border-gray-300 pl-3 sm:pl-4 py-2 sm:py-3 mt-2 sm:my-4 ${showFilter ? 'block' : 'hidden'} sm:block max-h-[150px] sm:max-h-none overflow-y-auto sm:overflow-visible`}>
+           <p className='mb-2 text-xs sm:text-sm font-medium text-gray-800'>TYPE</p>
+           <div className='flex flex-col gap-1.5 text-xs sm:text-sm font-light text-gray-700'>
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Topwear"} onChange={toggleSubCategory} />
+              <span>Topwear</span>
             </p>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Bottomwear"} onChange={toggleSubCategory} />Bottomwear
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Bottomwear"} onChange={toggleSubCategory} />
+              <span>Bottomwear</span>
             </p>
-            <p className='flex gap-2'>
-              <input className='w-3'  type='checkbox'  value={"Winterwear"} onChange={toggleSubCategory} />Winterwear
+            <p className='flex gap-2 items-center cursor-pointer hover:text-gray-900 transition-colors'>
+              <input className='w-3 h-3 cursor-pointer' type='checkbox' value={"Winterwear"} onChange={toggleSubCategory} />
+              <span>Winterwear</span>
             </p>
            </div>
          </div>
-
 
       </div>
 
@@ -154,10 +158,12 @@ const Collection = () => {
         </div>
 
         {/* Map Products */}
-        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 gap-y-4 sm:gap-y-6'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 sm:gap-y-6 justify-items-center'>
            {
             filterProducts.map((item, index) => (
-              <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
+              <div key={index} className='w-full max-w-[180px] sm:max-w-full'>
+                <ProductItem name={item.name} id={item._id} price={item.price} image={item.image} />
+              </div>
             ))
            }  
         </div>

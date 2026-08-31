@@ -7,3 +7,92 @@
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
+
+/* ================= ANIMATIONS & TRANSITIONS ================= */
+
+/* Button press feedback - subtle, imperceptible speed */
+button,
+[role="button"],
+a[role="button"] {
+    @apply transition-transform duration-100 ease-out;
+}
+
+button:active,
+[role="button"]:active,
+a[role="button"]:active {
+    @apply scale-97;
+}
+
+/* Form focus states - fast, barely noticeable */
+input:focus,
+textarea:focus,
+select:focus {
+    @apply transition-all duration-75 ease-out;
+}
+
+/* Modal animations */
+@keyframes modal-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modal-backdrop-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Toast animations */
+@keyframes toast-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form fade transitions */
+@keyframes form-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utility classes for animations */
+.animate-modal-in {
+    animation: modal-scale-in 0.2s ease-out forwards;
+}
+
+.animate-modal-backdrop-in {
+    animation: modal-backdrop-in 0.15s ease-out forwards;
+}
+
+.animate-toast-in {
+    animation: toast-slide-in 0.25s ease-out forwards;
+}
+
+.animate-form-in {
+    animation: form-fade-in 0.2s ease-out forwards;
+}
+
+/* Smooth scale class for :active states */
+.scale-97 {
+    transform: scale(0.97);
+}

@@ -46,8 +46,8 @@ const Hero = () => {
         <Link
           to="/collection"
           className="group inline-flex items-center gap-2 px-8 sm:px-10 py-3 sm:py-4 bg-black text-white text-sm tracking-wide
-                     hover:bg-gray-800 hover:gap-3 hover:shadow-lg
-                     transition-all duration-300 ease-out"
+                     hover:bg-gray-800 hover:gap-3 hover:shadow-lg hover:scale-[1.02]
+                     transition-all duration-300 ease-out active:scale-97"
         >
           SHOP NOW
           <ArrowRight
@@ -58,18 +58,16 @@ const Hero = () => {
 
         <Link
           to="/collection"
-          className="relative text-sm font-medium tracking-wide text-gray-800 pb-0.5
-                     after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:bg-gray-800
-                     after:w-full after:origin-left after:scale-x-100
-                     hover:after:scale-x-0 after:transition-transform after:duration-300
-                     transition-colors duration-300 hover:text-gray-500"
+          className="relative text-sm font-medium tracking-wide text-gray-800 pb-0.5 transition-colors duration-300 hover:text-gray-500
+                     after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:bg-gray-800 after:origin-left after:scale-x-100
+                     after:transition-transform after:duration-300 hover:after:scale-x-0"
         >
           EXPLORE NEW IN
         </Link>
       </div>
 
       {/* Scroll indicator */}
-      <div className="hidden sm:flex absolute bottom-8 sm:bottom-12 right-12 z-20 flex-col items-center gap-1 text-gray-500 animate-bounce">
+      <div className="hidden sm:flex absolute bottom-8 sm:bottom-12 right-12 z-20 flex-col items-center gap-1 text-gray-500 animate-[bounce-subtle_2s_ease-in-out_infinite]">
         <span className="text-[10px] tracking-widest">SCROLL</span>
         <ArrowDown size={14} />
       </div>
@@ -82,6 +80,10 @@ const Hero = () => {
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(5px); }
         }
       `}</style>
 

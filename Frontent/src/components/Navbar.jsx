@@ -82,11 +82,11 @@ const Navbar = () => {
 
           {/* DROPDOWN */}
           {token &&
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                <p className='cursor-pointer hover:text-black'>My Profile</p>
-                <p onClick={() => navigate('/order')} className='cursor-pointer hover:text-black'>Orders</p>
-                <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 animate-dropdown-in origin-top-right'>
+              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded shadow-lg'>
+                <p className='cursor-pointer hover:text-black transition-colors duration-200'>My Profile</p>
+                <p onClick={() => navigate('/order')} className='cursor-pointer hover:text-black transition-colors duration-200'>Orders</p>
+                <p onClick={logout} className='cursor-pointer hover:text-black transition-colors duration-200'>Logout</p>
               </div>
             </div>
           }
@@ -110,19 +110,19 @@ const Navbar = () => {
       </div>
 
       {/* Sidebar menu for small screen */}
-      <div className={`fixed inset-0 overflow-hidden bg-black/20 transition-opacity z-50 sm:hidden ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
-        <div className={`h-full w-[min(86vw,360px)] bg-white text-gray-600 shadow-xl transition-transform duration-300 ${visible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed inset-0 overflow-hidden bg-black/20 z-50 sm:hidden ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'} transition-opacity duration-150`}>
+        <div className={`h-full w-[min(86vw,360px)] bg-white text-gray-600 shadow-xl ${visible ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-out`}>
           <div className='flex items-center justify-between border-b p-4'>
             <p className='text-xs font-semibold tracking-[0.2em] text-gray-900'>MENU</p>
-            <button type='button' onClick={() => setvisible(false)} aria-label='Close navigation menu' className='p-1 text-gray-700'>
+            <button type='button' onClick={() => setvisible(false)} aria-label='Close navigation menu' className='p-1 text-gray-700 transition-transform duration-100 ease-out hover:scale-110 active:scale-97'>
               <X className='h-5 w-5' />
             </button>
           </div>
 
-          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/'>Home</NavLink>
-          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/collection'>Collection</NavLink>
-          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/about'>About</NavLink>
-          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm' to='/contact'>Contact</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm transition-colors duration-200 hover:bg-gray-50 active:scale-97 inline-block w-full' to='/'>Home</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm transition-colors duration-200 hover:bg-gray-50 active:scale-97 inline-block w-full' to='/collection'>Collection</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm transition-colors duration-200 hover:bg-gray-50 active:scale-97 inline-block w-full' to='/about'>About</NavLink>
+          <NavLink onClick={() => setvisible(false)} className='py-2 pl-6 border uppercase text-sm transition-colors duration-200 hover:bg-gray-50 active:scale-97 inline-block w-full' to='/contact'>Contact</NavLink>
         </div>
       </div>
 

@@ -69,7 +69,7 @@ export const Cart = () => {
                         Math.max(1, Number(e.target.value)),
                       )
                 }
-                className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
+                className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 transition-all duration-150 focus:ring-1 focus:ring-black"
                 type="number"
                 min={1}
                 value={item.quantity}
@@ -79,7 +79,7 @@ export const Cart = () => {
                 type="button"
                 onClick={() => updateQuantity(item._id, item.size, 0)}
                 aria-label={`Remove ${productData.name} from cart`}
-                className="mr-4 text-gray-500 hover:text-black"
+                className="mr-4 text-gray-500 hover:text-black transition-colors duration-200 active:scale-97"
               >
                 <Trash2 className="w-4 sm:w-5" />
               </button>
@@ -94,7 +94,7 @@ export const Cart = () => {
           <div className="w-full text-end">
             <button
               onClick={() => navigate("/place-order")}
-              className="bg-black text-white text-sm my-8 px-8 py-3"
+              className="bg-black text-white text-sm my-8 px-8 py-3 transition-all duration-200 hover:bg-gray-800 active:scale-97"
             >
               PROCEED TO CHECKOUT
             </button>

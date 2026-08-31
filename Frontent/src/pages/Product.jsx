@@ -25,15 +25,15 @@ const Product = () => {
 
       {/* --------------- product Images --------------- */}
       <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
-        <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full' >
+        <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-auto justify-start sm:justify-normal sm:w-[18.7%] w-full gap-2 sm:gap-0' >
            {
             productData.image.map((item,index) => (
-              <img onClick={() =>setImage(item)}  src={item}  key={index} className='w-[24%] sm:w-full sm:mb-3 shrink cursor-pointer' alt="" />
+              <img onClick={() =>setImage(item)}  src={item}  key={index} className='w-[24%] min-w-[24%] sm:w-full sm:mb-3 shrink-0 cursor-pointer rounded-sm border border-gray-200 hover:border-gray-400 transition-all duration-200 active:scale-97' alt="" />
             ))
            }
         </div>
         <div className='w-full sm:w-[80%]'>
-          <img className='w-full h-auto'  src={selectedImage} alt={productData.name} />
+          <img className='w-full h-auto rounded-sm'  src={selectedImage} alt={productData.name} />
         </div>
       </div>
 
@@ -56,7 +56,7 @@ const Product = () => {
             <div className='flex gap-2'>
               {
                 productData.sizes.map((item,index) => (
-                  <button type='button' onClick={() => setSize(item)} aria-pressed={item === size} className={`border py-2 px-4 bg-gray-100 transition-colors ${item === size ? 'border-orange-500 bg-orange-50': 'border-transparent hover:border-gray-400'}`}  key={index}>{item}</button>
+                  <button type='button' onClick={() => setSize(item)} aria-pressed={item === size} className={`border py-2 px-4 bg-gray-100 transition-all duration-200 ${item === size ? 'border-orange-500 bg-orange-50': 'border-transparent hover:border-gray-400'} active:scale-97`}  key={index}>{item}</button>
                 ))}
             </div>
         </div>
