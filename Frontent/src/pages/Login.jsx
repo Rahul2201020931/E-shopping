@@ -10,11 +10,55 @@ const Login = () => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
+  const saveSession = (response) => {
+    setToken(response.token)
+    localStorage.setItem('token', response.token)
+  }
+
+  const handleGoogleCredential = async (googleResponse) => {
+    try {
+      const response = await axios.post(backendUrl + '/api/user/google', { credential: googleResponse.credential })
+      if (response.data.success) {
+        saveSession(response.data)
+      } else {
+        toast.error(response.data.message)
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Google sign-in failed')
+    }
+  }
   
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
+
+  useEffect(() => {
+    if (!googleClientId || currentState !== 'Login') return
+
+    const renderGoogleButton = () => {
+      window.google.accounts.id.initialize({ client_id: googleClientId, callback: handleGoogleCredential })
+      window.google.accounts.id.renderButton(document.getElementById('google-sign-in'), {
+        theme: 'outline', size: 'large', width: 384, text: 'continue_with'
+      })
+    }
+
+    const existingScript = document.getElementById('google-identity-script')
+    if (existingScript) {
+      if (window.google) renderGoogleButton()
+      else existingScript.addEventListener('load', renderGoogleButton, { once: true })
+      return
+    }
+
+    const script = document.createElement('script')
+    script.id = 'google-identity-script'
+    script.src = 'https://accounts.google.com/gsi/client'
+    script.async = true
+    script.onload = renderGoogleButton
+    document.head.appendChild(script)
+  }, [googleClientId, currentState])
   
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -24,8 +68,7 @@ const Login = () => {
       
       const response = await axios.post(backendUrl + '/api/user/register', {name, email, password})
       if(response.data.success) {
-        setToken(response.data.token)
-        localStorage.setItem('token', response.data.token)
+        saveSession(response.data)
       } else {
         toast.error(response.data.message)
       }
@@ -34,8 +77,7 @@ const Login = () => {
       
      const response = await axios.post(backendUrl + '/api/user/login', {email, password})
      if(response.data.success) {
-      setToken(response.data.token)
-      localStorage.setItem('token', response.data.token)
+      saveSession(response.data)
      } else {
       toast.error(response.data.message)
      }
@@ -75,6 +117,11 @@ const Login = () => {
         }
        </div>
        <button className='bg-black text-white font-light px-8 py-2 mt-4 transition-transform duration-100 ease-out hover:bg-gray-800 active:scale-97' >{currentState === 'Login'  ?  'Sign In': 'Sign Up'}</button>
+       {currentState === 'Login' && googleClientId && <>
+         <div className='flex items-center gap-3 w-full my-1 text-xs text-gray-500'><span className='h-px flex-1 bg-gray-200'/>OR<span className='h-px flex-1 bg-gray-200'/></div>
+         <div id='google-sign-in' className='w-full flex justify-center'/>
+       </>}
+       {currentState === 'Login' && !googleClientId && <p className='text-xs text-gray-500 text-center'>Google sign-in will be available after configuration.</p>}
     </form>
   )
 }

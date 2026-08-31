@@ -1,93 +1,62 @@
-import React from 'react'
 import { assets } from '../assets/assets'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowDown } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-[90vh] sm:min-h-[95vh] bg-[#f0efec] overflow-hidden">
+    <section className="hero-editorial relative isolate h-[35rem] w-full overflow-hidden bg-[#efeeea] sm:h-[42rem] lg:h-[46rem]">
 
-      {/* Top tagline */}
-      <div className="absolute top-8 sm:top-12 left-4 sm:left-12 z-20 animate-[fadeIn_0.8s_ease-out]">
-        <p className="text-xs sm:text-sm font-medium tracking-wide text-gray-700 leading-relaxed">
-          TIMELESS STYLE.<br />MADE TO LAST.
+      <div className="absolute left-5 top-6 z-20 animate-[fadeIn_0.8s_ease-out] sm:left-10 sm:top-10 lg:left-14">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-slate-600 leading-[1.7] sm:text-xs">
+          Timeless style.<br />Made to last.
         </p>
-        <div className="w-8 h-[2px] bg-gray-700 mt-2"></div>
+        <div className="mt-2 h-px w-7 bg-slate-700" />
       </div>
 
-      {/* New collection tag */}
-      <div className="absolute top-8 sm:top-12 right-4 sm:right-12 z-20 text-right animate-[fadeIn_0.8s_ease-out]">
-        <p className="text-xs sm:text-sm font-medium tracking-widest text-gray-700 leading-relaxed">
-          NEW<br />COLLECTION<br />2024
+      <div className="absolute right-5 top-6 z-20 text-right animate-[fadeIn_0.8s_ease-out] sm:right-10 sm:top-10 lg:right-14">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.13em] text-slate-600 leading-[1.7] sm:text-xs">
+          New<br />Collection<br />2026
         </p>
       </div>
 
-      {/* Giant background brand text - vertically centered */}
-      <h1 className="absolute inset-x-0 top-1/2 -translate-y-1/2 w-full text-center font-extrabold uppercase leading-none text-gray-900/90
-                      text-[22vw] sm:text-[19vw] lg:text-[17vw]
-                      tracking-tight select-none z-0
-                      animate-[fadeIn_1s_ease-out]">
+      <p className="absolute left-1/2 top-[45%] z-0 w-max -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-black uppercase leading-none tracking-[-0.085em] text-[#202737]
+                    text-[26vw] sm:text-[18vw] lg:text-[15vw] animate-[fadeIn_1s_ease-out]" aria-hidden="true">
         Forever
-      </h1>
+      </p>
 
-      {/* Model image overlapping the text */}
-      <div className="absolute inset-x-0 bottom-[120px] sm:bottom-[140px] top-[12%] flex items-end justify-center z-10 pointer-events-none">
+      <div className="absolute inset-x-0 bottom-[5.2rem] top-[4.8rem] z-10 flex items-end justify-center pointer-events-none sm:bottom-24 sm:top-12">
         <img
           src={assets.hero1_img}
           alt="Model wearing the Forever 2024 collection"
-          className="h-full max-h-[620px] w-auto object-contain object-bottom
-                     drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)]
-                     animate-[slideUp_0.9s_ease-out]"
+          className="h-full max-h-[38rem] w-auto max-w-[82%] object-contain object-bottom drop-shadow-[0_24px_20px_rgba(21,29,42,0.15)] animate-[slideUp_0.9s_ease-out]"
         />
       </div>
 
-      {/* Bottom left CTAs - pinned to bottom of section */}
-      <div className="absolute bottom-8 sm:bottom-12 left-4 sm:left-12 z-20 flex items-center gap-4 sm:gap-6 animate-[fadeIn_1.1s_ease-out]">
+      <div className="absolute bottom-5 left-5 z-20 flex items-center gap-4 animate-[fadeIn_1.1s_ease-out] sm:bottom-9 sm:left-10 sm:gap-6 lg:left-14">
         <Link
           to="/collection"
-          className="group inline-flex items-center gap-2 px-8 sm:px-10 py-3 sm:py-4 bg-black text-white text-sm tracking-wide
-                     hover:bg-gray-800 hover:gap-3 hover:shadow-lg hover:scale-[1.02]
-                     transition-all duration-300 ease-out active:scale-97"
+          className="group inline-flex min-h-11 items-center gap-2 bg-[#121720] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_8px_20px_rgba(18,23,32,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#303949] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#121720] active:translate-y-0 sm:px-8"
         >
           SHOP NOW
           <ArrowRight
-            size={16}
+            size={15}
             className="transition-transform duration-300 group-hover:translate-x-1"
           />
         </Link>
 
         <Link
           to="/collection"
-          className="relative text-sm font-medium tracking-wide text-gray-800 pb-0.5 transition-colors duration-300 hover:text-gray-500
-                     after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:bg-gray-800 after:origin-left after:scale-x-100
-                     after:transition-transform after:duration-300 hover:after:scale-x-0"
+          className="hidden border-b border-slate-700 pb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-800 transition-colors hover:border-slate-400 hover:text-slate-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-900 sm:inline"
         >
-          EXPLORE NEW IN
+          Explore new in
         </Link>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="hidden sm:flex absolute bottom-8 sm:bottom-12 right-12 z-20 flex-col items-center gap-1 text-gray-500 animate-[bounce-subtle_2s_ease-in-out_infinite]">
-        <span className="text-[10px] tracking-widest">SCROLL</span>
+      <div className="hidden sm:flex absolute bottom-9 right-10 z-20 flex-col items-center gap-1 text-slate-500 motion-safe:animate-[bounce-subtle_2s_ease-in-out_infinite] lg:right-14">
+        <span className="text-[10px] font-medium tracking-[0.14em]">SCROLL</span>
         <ArrowDown size={14} />
       </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(5px); }
-        }
-      `}</style>
-
-    </div>
+    </section>
   )
 }
 

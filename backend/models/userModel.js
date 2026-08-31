@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    // Password remains required for email/password registrations, but Google-only
+    // accounts do not store one.
+    password: { type: String, default: null },
+    googleId: { type: String, unique: true, sparse: true },
     isAdmin: { type: Boolean, default: false },
     cartData: { type: Object, default:{}},
 

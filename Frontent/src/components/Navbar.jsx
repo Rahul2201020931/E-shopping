@@ -17,10 +17,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex items-center justify-between py-5 font-medium relative'>
+    <header className='relative flex min-h-[68px] items-center justify-between border-b border-slate-200 py-3 font-medium sm:min-h-[78px] sm:py-4'>
 
       {/* Left - Nav Links */}
-      <ul className='hidden sm:flex gap-6 text-xs tracking-wide text-gray-700 uppercase'>
+      <ul className='hidden sm:flex gap-6 text-[11px] font-semibold tracking-[0.1em] text-slate-600 uppercase'>
 
         <NavLink to='/' className='flex flex-col items-center gap-1'>
           <p>Home</p>
@@ -49,25 +49,25 @@ const Navbar = () => {
         type='button'
         onClick={() => setvisible(true)}
         aria-label='Open navigation menu'
-        className='sm:hidden p-1 text-gray-800'
+        className='sm:hidden -ml-2 flex min-h-11 min-w-11 items-center justify-center text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-950'
       >
         <Menu className='w-5 h-5' />
       </button>
 
       {/* Center - Logo */}
-      <Link to='/' className='absolute left-1/2 -translate-x-1/2 text-center'>
-        <p className='text-xl sm:text-2xl font-bold tracking-widest text-gray-900 leading-none'>FOREVER</p>
-        <p className='text-[9px] sm:text-[10px] tracking-[0.3em] text-gray-500'>CLOTHING</p>
+      <Link to='/' className='absolute left-1/2 -translate-x-1/2 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-950'>
+        <p className='text-[19px] sm:text-[22px] font-black tracking-[0.11em] text-slate-950 leading-none'>FOREVER</p>
+        <p className='mt-0.5 text-[8px] sm:text-[9px] font-medium tracking-[0.34em] text-slate-500'>CLOTHING</p>
       </Link>
 
       {/* Right - Icons */}
-      <div className='flex items-center gap-4 sm:gap-6'>
+      <div className='flex items-center gap-1 sm:gap-5'>
 
           <button type='button' onClick={() => setShowSearch(true)} aria-label='Search products' className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer'>
           <Search className='w-4 h-4' />
           <span className='hidden md:inline'>SEARCH</span>
         </button>
-        <button type='button' onClick={() => setShowSearch(true)} aria-label='Search products' className='sm:hidden p-1'>
+        <button type='button' onClick={() => setShowSearch(true)} aria-label='Search products' className='sm:hidden flex min-h-11 min-w-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-950'>
           <Search className='w-4 h-4' />
         </button>
 
@@ -76,7 +76,7 @@ const Navbar = () => {
             <User className='w-4 h-4' />
             <span className='hidden md:inline'>LOGIN</span>
           </button>
-          <button type='button' onClick={() => !token && navigate('/login')} disabled={token ? true : false} aria-label={token ? 'Open account menu' : 'Log in'} className='sm:hidden p-1 transition-colors duration-200 disabled:opacity-50 disabled:cursor-default hover:enabled:text-gray-900 active:scale-97'>
+          <button type='button' onClick={() => !token && navigate('/login')} disabled={token ? true : false} aria-label={token ? 'Open account menu' : 'Log in'} className='sm:hidden flex min-h-11 min-w-11 items-center justify-center transition-colors duration-200 disabled:opacity-50 disabled:cursor-default hover:enabled:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-950 active:scale-97'>
             <User className='w-4 h-4' />
           </button>
 
@@ -102,7 +102,7 @@ const Navbar = () => {
           <ShoppingBag className='w-4 h-4' />
           <span className='hidden md:inline'>CART ({getCartCount()})</span>
         </Link>
-        <Link to='/cart' className='relative sm:hidden'>
+        <Link to='/cart' aria-label={`Cart with ${getCartCount()} items`} className='relative flex min-h-11 min-w-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-950 sm:hidden'>
           <ShoppingBag className='w-5 h-5' />
           <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
         </Link>
@@ -126,7 +126,7 @@ const Navbar = () => {
         </div>
       </div>
 
-    </div>
+    </header>
   )
 }
 

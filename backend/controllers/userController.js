@@ -2,12 +2,15 @@ import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";
 
 
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
 }
+
+const googleClient = new OAuth2Client();
 
 
 
@@ -24,6 +27,9 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.json({ success: false, message: "User does not exist" });
         }
+        if (!user.password) {
+            return res.json({ success: false, message: "Please sign in with Google" });
+        }
         // Check if password is correct
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
@@ -37,6 +43,49 @@ const loginUser = async (req, res) => {
     }
 
 
+}
+
+// Route for Google Sign-In. Existing accounts are linked by verified email;
+// new accounts receive an optional Google identity without changing old records.
+const googleLogin = async (req, res) => {
+    try {
+        const { credential } = req.body;
+        const clientId = process.env.GOOGLE_CLIENT_ID;
+
+        if (!credential || !clientId) {
+            return res.status(400).json({ success: false, message: "Google Sign-In is not configured" });
+        }
+
+        const ticket = await googleClient.verifyIdToken({ idToken: credential, audience: clientId });
+        const payload = ticket.getPayload();
+
+        if (!payload?.email || !payload.email_verified || !payload.sub) {
+            return res.status(401).json({ success: false, message: "Google could not verify this account" });
+        }
+
+        const email = payload.email.toLowerCase();
+        let user = await userModel.findOne({ $or: [{ googleId: payload.sub }, { email }] });
+
+        if (user) {
+            // Link an existing verified-email account once, preserving its password and cart.
+            if (!user.googleId) {
+                user.googleId = payload.sub;
+                await user.save();
+            } else if (user.googleId !== payload.sub) {
+                return res.status(409).json({ success: false, message: "This email is already linked to a different Google account" });
+            }
+        } else {
+            user = await userModel.create({
+                name: payload.name || email.split('@')[0],
+                email,
+                googleId: payload.sub,
+            });
+        }
+
+        return res.json({ success: true, message: "User logged in with Google", token: createToken(user._id) });
+    } catch (error) {
+        return res.status(401).json({ success: false, message: "Google sign-in failed" });
+    }
 }
 
 //Route for user registration
@@ -84,4 +133,4 @@ const adminLogin = async (req, res) => {
 
 }
 
-export { loginUser, registerUser, adminLogin };
+export { loginUser, googleLogin, registerUser, adminLogin };

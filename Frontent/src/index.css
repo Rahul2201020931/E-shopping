@@ -22,6 +22,8 @@ body {
     padding: 0;
     width: 100%;
     min-width: 100%;
+    background: #ffffff;
+    color: #1f2937;
 }
 
 #root {
@@ -42,6 +44,30 @@ a.active hr {
 
 .prata-regular {
     font-family: 'Prata', serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* ================= ANIMATIONS & TRANSITIONS ================= */

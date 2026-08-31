@@ -1,4 +1,3 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -15,7 +14,7 @@ import SearchBar from './components/SearchBar'
 
 const App = () => {
   return (
-    <div className='px-4 sm:px-6 lg:px-8'>
+    <div className='mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8'>
      
       <Navbar />
          <SearchBar />
