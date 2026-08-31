@@ -72,21 +72,21 @@ const Navbar = () => {
         </button>
 
         <div className='group relative'>
-          <button type='button' onClick={() => token ? null : navigate('/login')} aria-label={token ? 'Open account menu' : 'Log in'} className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer'>
+          <button type='button' onClick={() => !token && navigate('/login')} disabled={token ? true : false} aria-label={token ? 'Open account menu' : 'Log in'} className='hidden sm:flex items-center gap-1 text-xs text-gray-700 cursor-pointer transition-colors duration-200 disabled:opacity-50 disabled:cursor-default hover:enabled:text-gray-900 active:scale-97'>
             <User className='w-4 h-4' />
             <span className='hidden md:inline'>LOGIN</span>
           </button>
-          <button type='button' onClick={() => token ? null : navigate('/login')} aria-label={token ? 'Open account menu' : 'Log in'} className='sm:hidden p-1'>
+          <button type='button' onClick={() => !token && navigate('/login')} disabled={token ? true : false} aria-label={token ? 'Open account menu' : 'Log in'} className='sm:hidden p-1 transition-colors duration-200 disabled:opacity-50 disabled:cursor-default hover:enabled:text-gray-900 active:scale-97'>
             <User className='w-4 h-4' />
           </button>
 
           {/* DROPDOWN */}
           {token &&
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 animate-dropdown-in origin-top-right'>
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 animate-dropdown-in origin-top-right z-50'>
               <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded shadow-lg'>
-                <p className='cursor-pointer hover:text-black transition-colors duration-200'>My Profile</p>
-                <p onClick={() => navigate('/order')} className='cursor-pointer hover:text-black transition-colors duration-200'>Orders</p>
-                <p onClick={logout} className='cursor-pointer hover:text-black transition-colors duration-200'>Logout</p>
+                <p className='cursor-pointer hover:text-black transition-colors duration-200 active:scale-97'>My Profile</p>
+                <p onClick={() => navigate('/order')} className='cursor-pointer hover:text-black transition-colors duration-200 active:scale-97'>Orders</p>
+                <p onClick={logout} className='cursor-pointer hover:text-black transition-colors duration-200 active:scale-97'>Logout</p>
               </div>
             </div>
           }

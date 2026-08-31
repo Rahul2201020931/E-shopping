@@ -45,7 +45,14 @@ const ShopContextProvider = (props) => {
         toast.success('Item added to cart')
         } catch (error) {
             console.log(error)
-            toast.error(error.message)
+            if(error.response?.status === 401) {
+                toast.error('Session expired. Please login again.')
+                setToken('')
+                localStorage.removeItem('token')
+                navigate('/login')
+            } else {
+                toast.error(error.response?.data?.message || error.message)
+            }
         }
     }
 
@@ -78,7 +85,14 @@ const ShopContextProvider = (props) => {
         await axios.post(backendUrl + '/api/cart/update', {itemId,size, quantity}, {headers: {token}})
        } catch (error) {
         console.log(error)
-        toast.error(error.message)
+        if(error.response?.status === 401) {
+            toast.error('Session expired. Please login again.')
+            setToken('')
+            localStorage.removeItem('token')
+            navigate('/login')
+        } else {
+            toast.error(error.response?.data?.message || error.message)
+        }
        }
     }
     }
@@ -123,7 +137,14 @@ const ShopContextProvider = (props) => {
       }
        } catch (error) {
         console.log(error)
-        toast.error(error.message)
+        if(error.response?.status === 401) {
+            toast.error('Session expired. Please login again.')
+            setToken('')
+            localStorage.removeItem('token')
+            navigate('/login')
+        } else {
+            toast.error(error.response?.data?.message || error.message)
+        }
        }
    }
   
