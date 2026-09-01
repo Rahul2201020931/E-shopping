@@ -125,12 +125,12 @@ const Collection = () => {
         </p>
 
         {/* Category Filter */}
-        <div className={`border border-neutral-200 bg-neutral-50 p-3 sm:p-4 mt-3 sm:mt-4 ${showFilter ? 'block' : 'hidden'} sm:block`}>
-          <p className='mb-2 text-xs sm:text-sm font-bold tracking-wider text-[#111111] uppercase'>CATEGORIES</p>
-          <div className='flex flex-col gap-2 text-xs sm:text-sm text-neutral-600'>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+        <div className={`border border-[#ebd3ca] bg-[#fbf6f4] p-3 sm:p-4 mt-3 sm:mt-4 ${showFilter ? 'block' : 'hidden'} sm:block`}>
+          <p className='mb-2 text-xs sm:text-sm font-semibold tracking-wider text-[#1d1d1b] uppercase font-sans'>CATEGORIES</p>
+          <div className='flex flex-col gap-2 text-xs sm:text-sm text-[#787873] font-sans'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Men"
                 checked={category.includes("Men")}
@@ -138,9 +138,9 @@ const Collection = () => {
               />
               <span>Men</span>
             </label>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Women"
                 checked={category.includes("Women")}
@@ -148,9 +148,9 @@ const Collection = () => {
               />
               <span>Women</span>
             </label>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Kids"
                 checked={category.includes("Kids")}
@@ -162,12 +162,12 @@ const Collection = () => {
         </div>
 
         {/* Sub Category Filter */}
-        <div className={`border border-neutral-200 bg-neutral-50 p-3 sm:p-4 mt-3 ${showFilter ? 'block' : 'hidden'} sm:block`}>
-          <p className='mb-2 text-xs sm:text-sm font-bold tracking-wider text-[#111111] uppercase'>TYPE</p>
-          <div className='flex flex-col gap-2 text-xs sm:text-sm text-neutral-600'>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+        <div className={`border border-[#ebd3ca] bg-[#fbf6f4] p-3 sm:p-4 mt-3 ${showFilter ? 'block' : 'hidden'} sm:block`}>
+          <p className='mb-2 text-xs sm:text-sm font-semibold tracking-wider text-[#1d1d1b] uppercase font-sans'>TYPE</p>
+          <div className='flex flex-col gap-2 text-xs sm:text-sm text-[#787873] font-sans'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Topwear"
                 checked={SubCategory.includes("Topwear")}
@@ -175,9 +175,9 @@ const Collection = () => {
               />
               <span>Topwear</span>
             </label>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Bottomwear"
                 checked={SubCategory.includes("Bottomwear")}
@@ -185,9 +185,9 @@ const Collection = () => {
               />
               <span>Bottomwear</span>
             </label>
-            <label className='flex gap-2.5 items-center cursor-pointer hover:text-black transition-colors'>
+            <label className='flex gap-2.5 items-center cursor-pointer hover:text-[#7d3c24] transition-colors'>
               <input
-                className='w-3.5 h-3.5 accent-[#111111] cursor-pointer'
+                className='w-3.5 h-3.5 accent-[#7d3c24] cursor-pointer'
                 type='checkbox'
                 value="Winterwear"
                 checked={SubCategory.includes("Winterwear")}
@@ -217,7 +217,7 @@ const Collection = () => {
           <select
             onChange={(e) => setSortType(e.target.value)}
             value={sortType}
-            className='border border-neutral-300 text-xs sm:text-sm px-3 py-2 bg-white text-[#111111] w-full sm:w-auto focus:outline-none focus:border-black'
+            className='border border-[#ebd3ca] text-xs sm:text-sm px-3 py-2 bg-white text-[#1d1d1b] w-full sm:w-auto focus:outline-none focus:border-[#7d3c24] font-sans'
           >
             <option value='relavent'>Sort: Relevant</option>
             <option value='low-high'>Price: Low to High</option>
@@ -227,8 +227,8 @@ const Collection = () => {
 
         {/* Map Products */}
         {filterProducts.length === 0 ? (
-          <div className="text-center py-20 text-neutral-500 text-sm bg-neutral-50 border border-neutral-200 p-8">
-            <p className="font-bold text-lg text-[#111111] mb-1">No matching items found</p>
+          <div className="text-center py-20 text-[#787873] text-sm bg-[#faf7f5] border border-[#ebd3ca] p-8 font-sans">
+            <p className="font-semibold text-lg text-[#1d1d1b] mb-1 font-serif-boutique italic">No matching items found</p>
             <p className="text-xs">Try clearing your filters to view all products in the collection.</p>
           </div>
         ) : (

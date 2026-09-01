@@ -2,15 +2,27 @@
 
 @import "tailwindcss";
 
-/* ================= THEME TOKENS & VARIABLES ================= */
+/* ================= THEME TOKENS & VARIABLES (From theirnibs.com) ================= */
 :root {
-  --color-ink: #111111;
-  --color-primary: #111111;
-  --color-accent: #333333;
-  --color-neutral-bg: #f7f7f7;
-  --color-border: #e5e5e5;
-  --font-heading: 'Poppins', 'Outfit', sans-serif;
-  --font-body: 'Poppins', 'Outfit', sans-serif;
+  --color-text: #1d1d1b;
+  --color-text-meta: #787873;
+  --color-text-terracotta: #7d3c24;
+  --color-text-accent: #a8421d;
+  
+  --color-blush: #f2c1ae;
+  --color-blush-hover: #e47e56;
+  --color-blush-light: #fbf6f4;
+  --color-linen: #faf7f5;
+  --color-cream: #f4f0eb;
+  --color-border: #ebd3ca;
+  --color-border-subtle: #a5a5a1;
+
+  --color-sage: #435830;
+  --color-sale: #d21404;
+  
+  --font-logo: "Work Sans", sans-serif;
+  --font-heading: "Instrument Serif", "Prata", Georgia, serif;
+  --font-body: "Poppins", "Outfit", sans-serif;
 }
 
 /* ================= GLOBAL RESET ================= */
@@ -34,7 +46,7 @@ body {
   width: 100%;
   min-width: 100%;
   background: #ffffff;
-  color: #111111;
+  color: #1d1d1b;
   font-family: 'Poppins', 'Outfit', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -117,15 +129,16 @@ a[role="button"]:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #fafafa;
+  background: #faf7f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
+  background: #e2d9d4;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a3a3a3;
+  background: #cbbcb4;
 }
+
 

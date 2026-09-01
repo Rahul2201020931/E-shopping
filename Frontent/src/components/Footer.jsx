@@ -26,36 +26,36 @@ const Footer = () => {
   }
 
   return (
-    <footer className="w-full bg-[#111111] text-white mt-16 border-t border-neutral-800">
+    <footer className="w-full bg-[#f2c1ae] text-[#1d1d1b] mt-16 border-t border-[#ebd3ca]">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         
         {/* Main Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-neutral-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#ebd3ca]">
           
           {/* Brand Intro & Studio Details (Span 4) */}
           <div className="lg:col-span-4 space-y-4">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold tracking-[0.16em] uppercase font-sans text-white">
+              <h3 className="text-2xl sm:text-3xl font-normal tracking-[-0.02em] uppercase font-logo text-[#1d1d1b]">
                 THEIR NIBS
               </h3>
-              <p className="text-[10px] tracking-[0.25em] text-[#e47e56] font-semibold uppercase mt-0.5">
+              <p className="text-[10px] tracking-[0.25em] text-[#7d3c24] font-semibold uppercase mt-0.5 font-sans">
                 London • Print-Led Nightwear & Loungewear
               </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-[#1d1d1b]/80 leading-relaxed max-w-sm font-sans">
               Hand-illustrated prints on super-soft sustainable cotton and silky modal. Designed in our London studio to make everyday lounging truly special.
             </p>
 
             {/* Studio Contact Quick Info */}
-            <div className="space-y-1.5 text-xs text-neutral-300 pt-1">
+            <div className="space-y-1.5 text-xs text-[#1d1d1b]/90 pt-1 font-sans">
               <div className="flex items-center gap-2">
-                <MapPin size={13} className="text-[#e47e56] shrink-0" />
+                <MapPin size={13} className="text-[#7d3c24] shrink-0" />
                 <span>London Studio, United Kingdom</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={13} className="text-[#e47e56] shrink-0" />
-                <a href="mailto:support@theirnibs.com" className="hover:text-white transition-colors">support@theirnibs.com</a>
+                <Mail size={13} className="text-[#7d3c24] shrink-0" />
+                <a href="mailto:support@theirnibs.com" className="hover:text-[#7d3c24] transition-colors font-medium">support@theirnibs.com</a>
               </div>
             </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-[#e47e56] text-white flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-white hover:bg-[#e47e56] hover:text-white text-[#1d1d1b] flex items-center justify-center transition-colors shadow-2xs"
               >
                 <InstagramIcon size={14} />
               </a>
@@ -75,14 +75,14 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"
-                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-[#e47e56] text-white flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-white hover:bg-[#e47e56] hover:text-white text-[#1d1d1b] flex items-center justify-center transition-colors shadow-2xs"
               >
                 <FacebookIcon size={14} />
               </a>
               <a
                 href="mailto:support@theirnibs.com"
                 aria-label="Email"
-                className="w-8 h-8 rounded-full bg-neutral-800 hover:bg-[#e47e56] text-white flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-white hover:bg-[#e47e56] hover:text-white text-[#1d1d1b] flex items-center justify-center transition-colors shadow-2xs"
               >
                 <Mail size={14} />
               </a>
@@ -91,77 +91,77 @@ const Footer = () => {
 
           {/* Column 1: Shop Direct Departments (Span 3) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white pb-1 border-b border-neutral-800 inline-block">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7d3c24] pb-1 border-b border-[#ebd3ca] inline-block font-sans">
               Shop Collections
             </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li onClick={() => handleNavigation('/collection?filter=new')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> New In Arrivals
+            <ul className="space-y-2 text-xs text-[#1d1d1b]/80 font-sans">
+              <li onClick={() => handleNavigation('/collection?filter=new')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> New In Arrivals
               </li>
-              <li onClick={() => handleNavigation('/collection?category=Women')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Women's Sleepwear
+              <li onClick={() => handleNavigation('/collection?category=Women')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Women's Sleepwear
               </li>
-              <li onClick={() => handleNavigation('/collection?category=Men')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Men's Sets
+              <li onClick={() => handleNavigation('/collection?category=Men')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Men's Sets
               </li>
-              <li onClick={() => handleNavigation('/collection?category=Kids')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Kids & Family Sleepwear
+              <li onClick={() => handleNavigation('/collection?category=Kids')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Kids & Family Sleepwear
               </li>
-              <li onClick={() => handleNavigation('/collection')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Explore All Products
+              <li onClick={() => handleNavigation('/collection')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Explore All Products
               </li>
             </ul>
           </div>
 
           {/* Column 2: Account & Shopping (Span 2) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white pb-1 border-b border-neutral-800 inline-block">
-              My Account
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7d3c24] pb-1 border-b border-[#ebd3ca] inline-block font-sans">
+              Customer Care
             </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li onClick={() => handleNavigation('/cart')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Shopping Bag
+            <ul className="space-y-2 text-xs text-[#1d1d1b]/80 font-sans">
+              <li onClick={() => handleNavigation('/cart')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Shopping Bag
               </li>
-              <li onClick={() => handleNavigation('/order')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Track My Orders
+              <li onClick={() => handleNavigation('/order')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Orders & Returns
               </li>
-              <li onClick={() => handleNavigation('/login')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Log In / Sign Up
+              <li onClick={() => handleNavigation('/login')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> My Account
               </li>
-              <li onClick={() => handleNavigation('/about')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Our London Story
+              <li onClick={() => handleNavigation('/about')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Our London Story
               </li>
-              <li onClick={() => handleNavigation('/contact')} className="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5">
-                <span className="text-[#e47e56] font-bold">&rsaquo;</span> Get In Touch
+              <li onClick={() => handleNavigation('/contact')} className="cursor-pointer hover:text-[#7d3c24] transition-colors flex items-center gap-1.5">
+                <span className="text-[#7d3c24] font-bold">&rsaquo;</span> Contact Support
               </li>
             </ul>
           </div>
 
           {/* Column 3: Boutique Guarantees Card (Span 3) */}
-          <div className="lg:col-span-3 bg-neutral-900 border border-neutral-800 p-5 rounded-none space-y-3.5">
-            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white flex items-center gap-1.5">
+          <div className="lg:col-span-3 bg-white/70 backdrop-blur-xs border border-[#ebd3ca] p-5 rounded-none space-y-3.5 shadow-xs">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7d3c24] flex items-center gap-1.5 font-sans">
               <Sparkles size={13} className="text-[#e47e56]" /> Boutique Guarantees
             </h4>
             
-            <div className="space-y-2.5 text-xs text-neutral-300">
+            <div className="space-y-2.5 text-xs text-[#1d1d1b]/90 font-sans">
               <div className="flex items-start gap-2">
-                <Truck size={14} className="text-[#e47e56] shrink-0 mt-0.5" />
-                <p><span className="font-semibold text-white">Free UK Delivery</span> on orders over £50</p>
+                <Truck size={14} className="text-[#7d3c24] shrink-0 mt-0.5" />
+                <p><span className="font-semibold text-[#1d1d1b]">Free UK Delivery</span> on orders over £50</p>
               </div>
 
               <div className="flex items-start gap-2">
-                <RefreshCw size={14} className="text-[#e47e56] shrink-0 mt-0.5" />
-                <p><span className="font-semibold text-white">Easy 15-Day Returns</span> with prepaid return label</p>
+                <RefreshCw size={14} className="text-[#7d3c24] shrink-0 mt-0.5" />
+                <p><span className="font-semibold text-[#1d1d1b]">Easy 30-Day Returns</span> with prepaid return label</p>
               </div>
 
               <div className="flex items-start gap-2">
-                <ShieldCheck size={14} className="text-[#e47e56] shrink-0 mt-0.5" />
-                <p><span className="font-semibold text-white">100% Organic Fabrics</span> ethically crafted</p>
+                <ShieldCheck size={14} className="text-[#7d3c24] shrink-0 mt-0.5" />
+                <p><span className="font-semibold text-[#1d1d1b]">100% Organic Fabrics</span> ethically crafted</p>
               </div>
 
               <div className="flex items-start gap-2">
-                <Lock size={14} className="text-[#e47e56] shrink-0 mt-0.5" />
-                <p><span className="font-semibold text-white">SSL Encrypted</span> secure checkout</p>
+                <Lock size={14} className="text-[#7d3c24] shrink-0 mt-0.5" />
+                <p><span className="font-semibold text-[#1d1d1b]">SSL Encrypted</span> secure checkout</p>
               </div>
             </div>
           </div>
@@ -169,17 +169,17 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#1d1d1b]/70 font-sans">
           <p>
             © {new Date().getFullYear()} Their Nibs London. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-4 text-[11px] text-neutral-400">
-            <span onClick={() => handleNavigation('/about')} className="cursor-pointer hover:text-white transition-colors">About Us</span>
+          <div className="flex items-center gap-4 text-[11px] text-[#1d1d1b]/80">
+            <span onClick={() => handleNavigation('/about')} className="cursor-pointer hover:text-[#7d3c24] transition-colors">About Us</span>
             <span>•</span>
-            <span onClick={() => handleNavigation('/contact')} className="cursor-pointer hover:text-white transition-colors">Contact Support</span>
+            <span onClick={() => handleNavigation('/contact')} className="cursor-pointer hover:text-[#7d3c24] transition-colors">Contact Support</span>
             <span>•</span>
-            <span onClick={() => handleNavigation('/collection')} className="cursor-pointer hover:text-white transition-colors">All Products</span>
+            <span onClick={() => handleNavigation('/collection')} className="cursor-pointer hover:text-[#7d3c24] transition-colors">All Products</span>
           </div>
         </div>
 

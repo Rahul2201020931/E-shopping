@@ -134,7 +134,7 @@ const Login = () => {
     <div className="min-h-[75vh] flex items-center justify-center py-10 sm:py-16 px-4">
       
       {/* Outer Card */}
-      <div className="relative w-full max-w-[760px] min-h-[500px] sm:h-[540px] bg-white rounded-2xl sm:rounded-3xl border border-neutral-200 shadow-2xl overflow-hidden flex flex-col sm:flex-row">
+      <div className="relative w-full max-w-[760px] min-h-[500px] sm:h-[540px] bg-white rounded-2xl sm:rounded-3xl border border-[#ebd3ca] shadow-2xl overflow-hidden flex flex-col sm:flex-row">
         
         {/* =========================================================
             DESKTOP SLIDING HERO OVERLAY (Animated Transition)
@@ -144,14 +144,14 @@ const Login = () => {
             activeView === 'login' ? 'translate-x-full' : 'translate-x-0'
           }`}
           style={{
-            backgroundImage: `linear-gradient(rgba(17, 17, 17, 0.65), rgba(17, 17, 17, 0.85)), url(${assets.contact_img || assets.about_img})`,
+            backgroundImage: `linear-gradient(rgba(29, 29, 27, 0.65), rgba(29, 29, 27, 0.85)), url(${assets.contact_img || assets.about_img})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
         >
           {/* Top Brand Mark */}
           <div>
-            <span className="text-[10px] font-bold tracking-[0.24em] text-white/80 uppercase">
+            <span className="text-[10px] font-medium tracking-[0.24em] text-[#f2c1ae] uppercase font-logo">
               THEIR NIBS LONDON
             </span>
           </div>
@@ -160,17 +160,17 @@ const Login = () => {
           <div className="space-y-3">
             {activeView === 'login' ? (
               <>
-                <h2 className="text-3xl font-bold tracking-tight uppercase leading-tight font-sans">
-                  Hello <br />There!
+                <h2 className="text-3xl font-normal leading-tight font-serif-boutique">
+                  Hello <br /><span className="italic text-[#f2c1ae]">There!</span>
                 </h2>
-                <p className="text-xs text-white/80 leading-relaxed max-w-xs font-light">
+                <p className="text-xs text-white/80 leading-relaxed max-w-xs font-light font-sans">
                   Begin your journey with boutique sleepwear and exclusive subscriber-only collections.
                 </p>
                 <div className="pt-2">
                   <button
                     type="button"
                     onClick={toggleView}
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#111111] px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer active:scale-95 shadow-md"
+                    className="border-2 border-[#f2c1ae] text-white hover:bg-[#f2c1ae] hover:text-[#1d1d1b] px-8 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer active:scale-95 shadow-md font-sans"
                   >
                     SIGN UP
                   </button>
@@ -178,17 +178,17 @@ const Login = () => {
               </>
             ) : (
               <>
-                <h2 className="text-3xl font-bold tracking-tight uppercase leading-tight font-sans">
-                  Welcome <br />Back!
+                <h2 className="text-3xl font-normal leading-tight font-serif-boutique">
+                  Welcome <br /><span className="italic text-[#f2c1ae]">Back!</span>
                 </h2>
-                <p className="text-xs text-white/80 leading-relaxed max-w-xs font-light">
+                <p className="text-xs text-white/80 leading-relaxed max-w-xs font-light font-sans">
                   Sign in to access your saved wishlist, view active orders, and enjoy fast checkout.
                 </p>
                 <div className="pt-2">
                   <button
                     type="button"
                     onClick={toggleView}
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#111111] px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer active:scale-95 shadow-md"
+                    className="border-2 border-[#f2c1ae] text-white hover:bg-[#f2c1ae] hover:text-[#1d1d1b] px-8 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-pointer active:scale-95 shadow-md font-sans"
                   >
                     LOGIN
                   </button>
@@ -198,7 +198,7 @@ const Login = () => {
           </div>
 
           {/* Bottom Trust Tag */}
-          <div className="text-[10px] text-white/60 tracking-wider">
+          <div className="text-[10px] text-white/70 tracking-wider font-sans">
             100% Organic & Consciously Made
           </div>
         </div>
@@ -215,10 +215,10 @@ const Login = () => {
           <div className="w-full max-w-xs mx-auto space-y-4">
             
             <div className="text-center sm:text-left">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] uppercase font-sans">
-                Sign In
+              <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-[#1d1d1b] font-serif-boutique">
+                Sign <span className="italic text-[#7d3c24]">In</span>
               </h2>
-              <p className="text-xs text-neutral-500 mt-1">Access your customer account</p>
+              <p className="text-xs text-[#787873] mt-1 font-sans">Access your customer account</p>
             </div>
 
             {/* Form */}
@@ -230,9 +230,9 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email Address"
-                  className="w-full h-11 px-3.5 pl-9 text-xs bg-neutral-50 border border-neutral-200 rounded-lg text-[#111111] placeholder:text-neutral-400 focus:bg-white focus:outline-none focus:border-black transition-colors"
+                  className="w-full h-11 px-3.5 pl-9 text-xs bg-[#faf7f5] border border-[#ebd3ca] rounded-lg text-[#1d1d1b] placeholder:text-[#787873] focus:bg-white focus:outline-none focus:border-[#7d3c24] transition-colors"
                 />
-                <Mail size={15} className="absolute left-3 top-3.5 text-neutral-400" />
+                <Mail size={15} className="absolute left-3 top-3.5 text-[#787873]" />
               </div>
 
               <div className="relative">
@@ -242,20 +242,20 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full h-11 px-3.5 pl-9 text-xs bg-neutral-50 border border-neutral-200 rounded-lg text-[#111111] placeholder:text-neutral-400 focus:bg-white focus:outline-none focus:border-black transition-colors"
+                  className="w-full h-11 px-3.5 pl-9 text-xs bg-[#faf7f5] border border-[#ebd3ca] rounded-lg text-[#1d1d1b] placeholder:text-[#787873] focus:bg-white focus:outline-none focus:border-[#7d3c24] transition-colors"
                 />
-                <Lock size={15} className="absolute left-3 top-3.5 text-neutral-400" />
+                <Lock size={15} className="absolute left-3 top-3.5 text-[#787873]" />
               </div>
 
               <div className="flex justify-end text-[11px]">
-                <span className="text-neutral-500 hover:text-black cursor-pointer transition-colors">
+                <span className="text-[#787873] hover:text-[#7d3c24] cursor-pointer transition-colors font-sans">
                   Forgot your password?
                 </span>
               </div>
 
               <button
                 type="submit"
-                className="w-full h-11 bg-[#111111] hover:bg-neutral-800 text-white rounded-lg text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm cursor-pointer active:scale-98 mt-1"
+                className="w-full h-11 bg-[#f2c1ae] hover:bg-[#e47e56] hover:text-white text-[#1d1d1b] rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 shadow-xs cursor-pointer active:scale-98 mt-1 font-sans"
               >
                 SIGN IN
               </button>
@@ -264,22 +264,22 @@ const Login = () => {
             {/* Google Sign-In on Sign In Side */}
             {googleClientId ? (
               <div className="pt-2">
-                <div className="flex items-center gap-2 mb-3 text-[11px] text-neutral-400">
-                  <div className="h-px flex-1 bg-neutral-200" />
+                <div className="flex items-center gap-2 mb-3 text-[11px] text-[#787873]">
+                  <div className="h-px flex-1 bg-[#ebd3ca]" />
                   <span>OR</span>
-                  <div className="h-px flex-1 bg-neutral-200" />
+                  <div className="h-px flex-1 bg-[#ebd3ca]" />
                 </div>
                 <div id="google-sign-in-login" className="flex justify-center" />
               </div>
             ) : null}
 
             {/* Mobile Switch Link */}
-            <div className="sm:hidden text-center text-xs text-neutral-500 pt-2 border-t border-neutral-100">
+            <div className="sm:hidden text-center text-xs text-[#787873] pt-2 border-t border-[#ebd3ca]">
               Don't have an account?{' '}
               <button
                 type="button"
                 onClick={toggleView}
-                className="font-bold text-[#111111] underline cursor-pointer"
+                className="font-bold text-[#7d3c24] underline cursor-pointer"
               >
                 Sign Up
               </button>
@@ -300,10 +300,10 @@ const Login = () => {
           <div className="w-full max-w-xs mx-auto space-y-4">
             
             <div className="text-center sm:text-left">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] uppercase font-sans">
-                Sign Up
+              <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-[#1d1d1b] font-serif-boutique">
+                Sign <span className="italic text-[#7d3c24]">Up</span>
               </h2>
-              <p className="text-xs text-neutral-500 mt-1">Create your boutique account</p>
+              <p className="text-xs text-[#787873] mt-1 font-sans">Create your boutique account</p>
             </div>
 
             {/* Form */}
@@ -315,9 +315,9 @@ const Login = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Full Name"
-                  className="w-full h-11 px-3.5 pl-9 text-xs bg-neutral-50 border border-neutral-200 rounded-lg text-[#111111] placeholder:text-neutral-400 focus:bg-white focus:outline-none focus:border-black transition-colors"
+                  className="w-full h-11 px-3.5 pl-9 text-xs bg-[#faf7f5] border border-[#ebd3ca] rounded-lg text-[#1d1d1b] placeholder:text-[#787873] focus:bg-white focus:outline-none focus:border-[#7d3c24] transition-colors"
                 />
-                <User size={15} className="absolute left-3 top-3.5 text-neutral-400" />
+                <User size={15} className="absolute left-3 top-3.5 text-[#787873]" />
               </div>
 
               <div className="relative">
@@ -327,9 +327,9 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email Address"
-                  className="w-full h-11 px-3.5 pl-9 text-xs bg-neutral-50 border border-neutral-200 rounded-lg text-[#111111] placeholder:text-neutral-400 focus:bg-white focus:outline-none focus:border-black transition-colors"
+                  className="w-full h-11 px-3.5 pl-9 text-xs bg-[#faf7f5] border border-[#ebd3ca] rounded-lg text-[#1d1d1b] placeholder:text-[#787873] focus:bg-white focus:outline-none focus:border-[#7d3c24] transition-colors"
                 />
-                <Mail size={15} className="absolute left-3 top-3.5 text-neutral-400" />
+                <Mail size={15} className="absolute left-3 top-3.5 text-[#787873]" />
               </div>
 
               <div className="relative">
@@ -339,14 +339,14 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full h-11 px-3.5 pl-9 text-xs bg-neutral-50 border border-neutral-200 rounded-lg text-[#111111] placeholder:text-neutral-400 focus:bg-white focus:outline-none focus:border-black transition-colors"
+                  className="w-full h-11 px-3.5 pl-9 text-xs bg-[#faf7f5] border border-[#ebd3ca] rounded-lg text-[#1d1d1b] placeholder:text-[#787873] focus:bg-white focus:outline-none focus:border-[#7d3c24] transition-colors"
                 />
-                <Lock size={15} className="absolute left-3 top-3.5 text-neutral-400" />
+                <Lock size={15} className="absolute left-3 top-3.5 text-[#787873]" />
               </div>
 
               <button
                 type="submit"
-                className="w-full h-11 bg-[#111111] hover:bg-neutral-800 text-white rounded-lg text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm cursor-pointer active:scale-98 mt-1"
+                className="w-full h-11 bg-[#f2c1ae] hover:bg-[#e47e56] hover:text-white text-[#1d1d1b] rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 shadow-xs cursor-pointer active:scale-98 mt-1 font-sans"
               >
                 SIGN UP
               </button>
@@ -355,22 +355,22 @@ const Login = () => {
             {/* Google Sign-In on Sign Up Side */}
             {googleClientId ? (
               <div className="pt-2">
-                <div className="flex items-center gap-2 mb-3 text-[11px] text-neutral-400">
-                  <div className="h-px flex-1 bg-neutral-200" />
+                <div className="flex items-center gap-2 mb-3 text-[11px] text-[#787873]">
+                  <div className="h-px flex-1 bg-[#ebd3ca]" />
                   <span>OR</span>
-                  <div className="h-px flex-1 bg-neutral-200" />
+                  <div className="h-px flex-1 bg-[#ebd3ca]" />
                 </div>
                 <div id="google-sign-in-register" className="flex justify-center" />
               </div>
             ) : null}
 
             {/* Mobile Switch Link */}
-            <div className="sm:hidden text-center text-xs text-neutral-500 pt-2 border-t border-neutral-100">
+            <div className="sm:hidden text-center text-xs text-[#787873] pt-2 border-t border-[#ebd3ca]">
               Already have an account?{' '}
               <button
                 type="button"
                 onClick={toggleView}
-                className="font-bold text-[#111111] underline cursor-pointer"
+                className="font-bold text-[#7d3c24] underline cursor-pointer"
               >
                 Sign In
               </button>
