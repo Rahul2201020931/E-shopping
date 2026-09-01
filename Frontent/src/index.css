@@ -1,267 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Prata&family=Work+Sans:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
-/* ================= GLOBAL RESET ================= */
+/* ================= THEME TOKENS & VARIABLES ================= */
+:root {
+  --color-ink: #111111;
+  --color-primary: #111111;
+  --color-accent: #333333;
+  --color-neutral-bg: #f7f7f7;
+  --color-border: #e5e5e5;
+  --font-heading: 'Poppins', 'Outfit', sans-serif;
+  --font-body: 'Poppins', 'Outfit', sans-serif;
+}
 
+/* ================= GLOBAL RESET ================= */
 html,
 body,
 #root {
-    width: 100%;
-    min-width: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-width: 100%;
-    background: #ffffff;
-    color: #1f2937;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100%;
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Poppins', 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-    width: 100%;
-    min-width: 100%;
+/* Typography Classes */
+.font-serif-boutique {
+  font-family: 'Instrument Serif', 'Prata', 'Playfair Display', Georgia, serif;
 }
 
-/* ================= GLOBAL ================= */
-
-* {
-    box-sizing: border-box;
-    font-family: 'Outfit', sans-serif;
+.font-sans-boutique {
+  font-family: 'Poppins', 'Outfit', sans-serif;
 }
 
-a.active hr {
-    display: block;
+.font-logo {
+  font-family: 'Work Sans', 'Outfit', sans-serif;
 }
 
 .prata-regular {
-    font-family: 'Prata', serif;
+  font-family: 'Prata', serif;
 }
 
+/* Active navigation indicators */
+a.active hr {
+  display: block;
+}
+
+/* Keyframes */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes bounce-subtle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-/* ================= ANIMATIONS & TRANSITIONS ================= */
-
-/* Button press feedback - subtle, imperceptible speed */
+/* Button & interactive states */
 button,
 [role="button"],
 a[role="button"] {
-    @apply transition-transform duration-100 ease-out;
+  transition: all 0.15s ease-out;
 }
 
 button:active,
 [role="button"]:active,
 a[role="button"]:active {
-    @apply scale-97;
+  transform: scale(0.98);
 }
 
-/* Form focus states - fast, barely noticeable */
-input:focus,
-textarea:focus,
-select:focus {
-    @apply transition-all duration-75 ease-out;
+/* Custom scrollbar for boutique feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-/* Drawer/Modal enter animations */
-@keyframes drawer-slide-in {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
+::-webkit-scrollbar-track {
+  background: #fafafa;
 }
 
-@keyframes drawer-slide-out {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 3px;
 }
 
-@keyframes backdrop-fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
 }
 
-@keyframes backdrop-fade-out {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-/* Search bar animations */
-@keyframes search-slide-up {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes search-slide-down {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-}
-
-/* Dropdown animations */
-@keyframes dropdown-pop-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95) translateY(-4px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-/* Form fade transitions */
-@keyframes form-fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(4px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes form-fade-out {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-}
-
-/* Modal enter animations */
-@keyframes modal-backdrop-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes modal-scale-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Utility classes for animations */
-.animate-drawer-in {
-    animation: drawer-slide-in 0.3s ease-out forwards;
-}
-
-.animate-drawer-out {
-    animation: drawer-slide-out 0.3s ease-out forwards;
-}
-
-.animate-backdrop-in {
-    animation: backdrop-fade-in 0.15s ease-out forwards;
-}
-
-.animate-backdrop-out {
-    animation: backdrop-fade-out 0.15s ease-out forwards;
-}
-
-.animate-search-in {
-    animation: search-slide-up 0.25s ease-out forwards;
-}
-
-.animate-search-out {
-    animation: search-slide-down 0.25s ease-out forwards;
-}
-
-.animate-dropdown-in {
-    animation: dropdown-pop-in 0.2s ease-out forwards;
-}
-
-.animate-form-in {
-    animation: form-fade-in 0.2s ease-out forwards;
-}
-
-.animate-form-out {
-    animation: form-fade-out 0.12s ease-out forwards;
-}
-
-.animate-modal-backdrop-in {
-    animation: modal-backdrop-in 0.15s ease-out forwards;
-}
-
-.animate-modal-in {
-    animation: modal-scale-in 0.2s ease-out forwards;
-}
-
-/* Smooth scale class for :active states */
-.scale-97 {
-    transform: scale(0.97);
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 600px) {
-    a.active {
-        background-color: black;
-    }
-}
